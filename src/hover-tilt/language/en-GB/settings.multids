@@ -1,0 +1,9 @@
+title: $:/plugins/nikorion/hover-tilt/language/en-GB/Settings/
+
+Caption: Hover Tilt
+Hint: Global defaults for the `<$HoverTilt>` widget. Each value is overridable per-widget via the matching attribute; reset returns a value to the shipped default. Props that inherit by default (`tiltFactorY`, `tiltStiffness`, `tiltDamping`, `glareMask`…) stay per-widget attributes and are not listed here.
+Section/tilt: Tilt
+Section/spring: Animation (spring)
+Section/glare: Glare
+Section/shadow: Shadow
+Section/layout: Layout

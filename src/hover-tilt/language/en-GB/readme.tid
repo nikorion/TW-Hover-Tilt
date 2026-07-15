@@ -1,0 +1,173 @@
+title: $:/plugins/nikorion/hover-tilt/language/en-GB/readme
+type: text/vnd.tiddlywiki
+
+!! Overview
+
+A `<$HoverTilt>` widget bringing [[hover-tilt|https://hover-tilt.simey.me]]'s 3D tilt/glare pointer effect to any TiddlyWiki content — the same effect used on the [[Pokémon holo cards demo|https://hover-tilt.simey.me/bespoke/pokemon-cards/]].
+
+hover-tilt ships its own prebuilt Web Component — a self-registering, dependency-free `<hover-tilt>` custom element. `modules/hover-tilt.min.js` vendors that file as-is (TiddlyWiki module header added, its one ESM `export` statement removed), and the `<$HoverTilt>` widget loads it via `require()` like any other TiddlyWiki module, then drives the resulting `<hover-tilt>` element directly.
+
+* `<$HoverTilt>` — wraps whatever content is written in its own body with hover-tilt's 3D tilt/glare effect
+
+---
+
+!! Body / slotted content
+
+hover-tilt applies its tilt effect to whatever is written in its own body — not to a fixed element (see its [[bespoke docs|https://hover-tilt.simey.me/bespoke/pokemon-cards/]] for a real-world example). `<$HoverTilt>` mirrors that: anything nested inside the widget's own tags is rendered by TiddlyWiki as usual, then becomes hover-tilt's slotted content.
+
+<$codeblock code="""<$HoverTilt><img src="card.png" style="width:220px;border-radius:12px;"/></$HoverTilt>"""/>
+
+Used self-closing / with no body, the widget just tilts nothing (an empty slot).
+
+---
+
+!! Attributes
+
+Every attribute below is a direct pass-through to [[hover-tilt|https://hover-tilt.simey.me]] — see its docs for the full behaviour of each.
+
+Each value is resolved in three tiers: the widget attribute, then the global setting tiddler `$:/plugins/nikorion/hover-tilt/settings/<attr>` (edited via the //Hover Tilt// tab in [[Control Panel|$:/ControlPanel]]), then hover-tilt's own internal default. The //Default// column below is the plugin's shipped setting; leave an attribute out to inherit it.
+
+|!Attribute |!Values |!Default |!Description |
+| `tiltFactor` |number |`1.2` |Tilt intensity multiplier |
+| `tiltFactorY` |number |same as `tiltFactor` |Separate Y-axis tilt factor |
+| `scaleFactor` |number |`1` |Scale-up amount while active |
+| `stiffness` |number |`0.066` |Spring stiffness (scale/opacity) — higher is snappier. Default matches the Pokémon holo cards' soft interaction spring, not hover-tilt's own (snappier) `0.2` |
+| `damping` |number |`0.25` |Spring damping (scale/opacity) — higher is less bouncy. Default matches the Pokémon holo cards, not hover-tilt's own `0.8` |
+| `tiltStiffness` |number |= `stiffness` |Stiffness of a //separate// tilt spring — omit to reuse the scale spring |
+| `tiltDamping` |number |= `damping` |Damping of the separate tilt spring — omit to reuse the scale spring |
+| `enterDelay` |number (ms) |`0` |Delay before activating on pointer enter |
+| `exitDelay` |number (ms) |`200` |Delay before deactivating on pointer leave |
+| `shadow` |`yes` · `no` |`yes` |Drop shadow that follows the tilt |
+| `shadowBlur` |number |`12` |Shadow blur radius |
+| `blendMode` |CSS blend mode |`overlay` |`mix-blend-mode` for the glare layer |
+| `glareIntensity` |number |`1` |Glare opacity multiplier |
+| `glareHue` |number (0-360) |`270` |Glare colour hue |
+| `glareMask` |CSS `mask-image` value |— |Masks the glare layer to a shape |
+| `glareMaskMode` |CSS `mask-mode` value |hover-tilt's own |`match-source` · `luminance` · `alpha` · `none` |
+| `glareMaskComposite` |CSS `mask-composite` value |hover-tilt's own |`add` · `subtract` · `exclude` · `intersect` |
+| `borderRadius` |CSS length |`12px` |Baseline corner radius of the host (glare/shadow layers inherit it) |
+| `class` |string |— |Extra CSS class(es) on hover-tilt's container |
+| `style` |string |— |Extra inline style on hover-tilt's container, appended after the widget's required `display: inline-block; border-radius: <borderRadius>;` baseline |
+
+!!! Corner radius: a single source of truth
+
+hover-tilt's glare/shadow layers live in its //shadow DOM// and inherit their `border-radius` from the **host** (the `<hover-tilt>` element), not from your content. Rounding only your card therefore leaves the glare/shadow with square corners (or the `12px` default).
+
+To set the radius **once**, put the real value on the widget's `borderRadius` attribute and `border-radius: inherit` on your content: the content then picks up the host's radius, and glare + shadow + content stay aligned. Hard-coding the radius on both sides instead forces you to keep them in sync by hand.
+
+---
+
+!! Usage
+
+<$codeblock language="html" code="""<$HoverTilt>
+
+<div class="card">
+Hover me!
+</div>
+
+<style>
+.card {
+display:grid;
+place-items:center;
+width:220px;
+height:300px;
+border-radius:12px;
+background:linear-gradient(135deg,#2b2f38,#1a1c22);
+color:white;
+font:600 1.1rem system-ui,sans-serif;
+}
+</style>
+
+</$HoverTilt>"""/>
+
+
+<$HoverTilt>
+<div class="card">
+Hover me!
+</div>
+<style>
+.card {
+display:grid;
+place-items:center;
+width:220px;
+height:300px;
+border-radius:12px;
+background:linear-gradient(135deg,#2b2f38,#1a1c22);
+color:white;
+font:600 1.1rem system-ui,sans-serif;
+}
+</style>
+</$HoverTilt>
+
+!!! Tuning hover-tilt's own attributes
+
+<$codeblock language="html" code="""<$HoverTilt tiltFactor="2" glareHue="150" glareIntensity="1.5" scaleFactor="1.05" shadow="yes">
+
+...
+"""/>
+
+<$HoverTilt tiltFactor="2" glareHue="150" glareIntensity="1.5" scaleFactor="1.05" shadow="yes">
+<div class="card">
+Hover me!
+</div>
+<style>
+.card {
+display:grid;
+place-items:center;
+width:220px;
+height:300px;
+border-radius:12px;
+background:linear-gradient(135deg,#2b2f38,#1a1c22);
+color:white;
+font:600 1.1rem system-ui,sans-serif;
+}
+</style>
+</$HoverTilt>
+
+See also the tiddler [[playground|$:/plugins/nikorion/hover-tilt/playground]] for a live playground tuning every attribute at once.
+
+---
+
+!! Effect technique reference
+
+A few of the classic Pokémon holographic-card CSS techniques (glitter, metallic sheen, iridescent shine) can be layered on top of `hover-tilt`'s own tilt/glare via its native attributes (see the Attributes table above — `glareHue`, `glareIntensity`, `blendMode`, `shadow`, etc.) instead of hand-rolled `::before`/`::after` overlays. The table below is a lookup in case a look `hover-tilt` can't produce natively is needed.
+
+|!Effect |!Visual result |!CSS technique |
+|Glare |Pointer-tracked light halo — the base of every holo effect |`radial-gradient(farthest-corner circle at var(--mx) var(--my), ...)` — provided by `hover-tilt`, tunable via `glareHue`/`glareIntensity`/`blendMode` |
+|Glitter / grain |Scintillating flecks |SVG noise (`feTurbulence`) blended with `screen`, brightness boosted before `contrast()` |
+|Metallic / foil sheen |Brushed-metal bands |Angled `repeating-linear-gradient` + `overlay` |
+|Iridescent / rainbow shift |Oil-slick shimmer (Trainer Gallery holofoil) |Rainbow `repeating-linear-gradient` + `color-dodge` |
+|Holo bars |Classic 90s holo — rainbow stripes + vertical light/dark bars |Two combined `repeating-linear-gradient`s, `soft-light`/`screen`/`overlay` |
+|Galaxy / cosmic |Nebula/starfield backdrop |External image + diagonal gradient, `color-dodge`/`color-burn` |
+|Radiant crosshatch |Woven/embossed pattern |Two opposed-angle `repeating-linear-gradient`s, `exclusion`/`color-dodge` |
+|Gold/metal foil |Warm gold "secret rare" sheen |Metal texture + rainbow, `color-burn`/`darken` |
+|3D tilt ✓ |The tilt itself |`rotateX`/`rotateY` following the pointer, `perspective`, `transform-style: preserve-3d` — provided by `hover-tilt` |
+|Glow / active shadow ✓ |Light halo on interaction, distinct from glare |`hover-tilt`'s `shadow`/`shadowBlur` attributes |
+|Clip-path masking |Confines the holo effect to the illustration, not the frame/text |`clip-path: inset(...)` or `polygon(...)` on the effect layer |
+
+✓ = currently active, via `hover-tilt`'s own attributes rather than custom CSS.
+
+!!! Blend modes used
+
+|!Blend mode |!Effect |!Used for |
+|`screen` |Gently lightens, never blows out to pure white |Glitter, classic Holo |
+|`color-dodge` |Aggressively lightens (`base ÷ (1 − blend)`), can blow out to white |Iridescent, Galaxy, Gold, Radiant |
+|`color-burn` |Opposite of color-dodge — aggressively darkens |Galaxy, Rainbow Secret, Gold |
+|`overlay` |Combines multiply (dark areas) + screen (light areas) — boosts existing contrast |Metallic sheen, Holo |
+|`hard-light` |Like overlay but driven by the top layer instead of the base — harsher |V, VMAX, VSTAR, Trainer Gallery |
+|`soft-light` |Soft version of hard-light — gentle lighten/darken |Holo, V |
+|`exclusion` |Like difference but milder — partially inverts overlapping colours |`:after` layers for extra depth, Radiant |
+|`multiply` |Darkens by multiplying colours — never lightens |Radiant (woven pattern) |
+|`darken` |Keeps the darker of the two colours, pixel by pixel |Gold Secret, Radiant |
+
+`screen`/`overlay`/`soft-light`/`hard-light` are relatively predictable and safe to start with. `color-dodge`/`color-burn`/`exclusion` are more dramatic but far more sensitive to whatever's underneath — worth remembering when a "flat" background makes an effect look weaker than expected.
+
+---
+
+!! Credits
+
+Built on [[hover-tilt|https://hover-tilt.simey.me]]'s own Web Component (itself built with [[Svelte|https://svelte.dev]]).
+
+Developed with assistance from Anthropic Claude for code, review, refactoring, and documentation.
+
+Version history and licence details live in the plugin's //history// and //license// tabs.

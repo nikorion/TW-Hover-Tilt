@@ -1,0 +1,4 @@
+title: $:/plugins/nikorion/hover-tilt/language/en-GB/
+
+Errors/LibraryMissing: `hover-tilt.min.js` missing — the plugin installation may be corrupted.
+Buttons/Reset: Reset to default

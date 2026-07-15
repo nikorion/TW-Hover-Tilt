@@ -1,0 +1,23 @@
+title: $:/nikorion/detect-language
+tags: $:/tags/StartupAction/Browser
+
+<!--
+Browser-language auto-detection, run once at browser startup — in the dev
+wiki and in the built demo site alike (this tiddler is not excluded by the
+demo's publishFilter, on purpose). Adapted from Modern.TiddlyDev's startup
+actions, generalised: instead of hardcoding one language, it picks among the
+language plugins actually installed in this wiki.
+
+Resolution order for $:/info/browser/language (= navigator.language):
+1. exact BCP-47 tag match against installed language plugins (fr-FR → fr-FR);
+2. primary-subtag match (fr-CA → fr-FR);
+3. fallback en-GB (TiddlyWiki's built-in default, always available).
+
+The dev wiki's $:/config/SyncFilter excludes $:/language, so the value set
+here stays in memory only — nothing is persisted to wiki/tiddlers/.
+-->
+
+\whitespace trim
+<$let blang={{{ [{$:/info/browser/language}] }}} primary={{{ [<blang>split[-]first[]] }}}>
+<$action-setfield $tiddler="$:/language" text={{{ [plugin-type[language]removeprefix[$:/languages/]match:caseinsensitive<blang>] ~[plugin-type[language]removeprefix[$:/languages/]] :filter[split[-]first[]match:caseinsensitive<primary>] +[first[]] ~[[en-GB]] +[addprefix[$:/languages/]] }}}/>
+</$let>

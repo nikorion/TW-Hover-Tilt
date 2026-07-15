@@ -1,0 +1,60 @@
+name: Deploy demo & plugin library to GitHub Pages
+
+# Builds the external-core demo wiki (docs/index.html + tiddlywikicore-<version>.js)
+# and the subscribable plugin library (docs/library/), then publishes docs to
+# GitHub Pages. Enable Pages with source "GitHub Actions" in the repo settings first.
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one Pages deployment at a time; let a newer push cancel an in-flight run.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # TiddlyWiki resolves the plugin name "nikorion/hover-tilt" through
+      # TIDDLYWIKI_PLUGIN_PATH (a dir of symlinks, one per plugin) — same mechanism as
+      # locally. Recreate just this plugin's symlink so the build resolves it off-machine.
+      - name: Set up plugin symlink
+        run: |
+          mkdir -p "$RUNNER_TEMP/tw-plugins/nikorion"
+          ln -s "$GITHUB_WORKSPACE/src/hover-tilt" "$RUNNER_TEMP/tw-plugins/nikorion/hover-tilt"
+          echo "TIDDLYWIKI_PLUGIN_PATH=$RUNNER_TEMP/tw-plugins" >> "$GITHUB_ENV"
+
+      - run: pnpm build:site
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

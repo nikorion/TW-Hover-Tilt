@@ -1,0 +1,21 @@
+{
+  "description": "TW-Hover-Tilt plugin library build (subscribable from TiddlyWiki's plugin manager)",
+  "plugins": [
+    "tiddlywiki/pluginlibrary",
+    "nikorion/hover-tilt"
+  ],
+  "themes": [
+    "tiddlywiki/vanilla",
+    "tiddlywiki/snowwhite"
+  ],
+  "pluginPath": "../src",
+  "build": {
+    "library": [
+      "--output", "docs/library",
+      "--makelibrary", "$:/UpgradeLibrary",
+      "--savelibrarytiddlers", "$:/UpgradeLibrary", "[[$:/plugins/nikorion/hover-tilt]]", "recipes/library/tiddlers/", "$:/UpgradeLibrary/List",
+      "--savetiddler", "$:/UpgradeLibrary/List", "recipes/library/tiddlers.json",
+      "--rendertiddler", "$:/plugins/tiddlywiki/pluginlibrary/library.template.html", "index.html", "text/plain"
+    ]
+  }
+}

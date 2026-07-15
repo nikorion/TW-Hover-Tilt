@@ -1,0 +1,121 @@
+title: $:/plugins/nikorion/hover-tilt/settings
+tags: $:/tags/ControlPanel/SettingsTab
+caption: <<hover-tilt-lingo Settings/Caption>>
+type: text/vnd.tiddlywiki
+
+\whitespace trim
+
+<!--
+Global-defaults tab for <$HoverTilt>. Each control edits
+$:/plugins/nikorion/hover-tilt/settings/<attr>; the reset button deletes that
+real tiddler so the shipped shadow default (settings/defaults.multids) shows
+through again. Labels are shared with the playground (Playground/Label/*).
+NOTE: these are \procedure definitions — $param$ textual substitution only
+happens in \define macros, never in procedures — so forwarding a parameter to
+a nested procedure must go through <$transclude $variable=...> with an
+explicit attribute, not <<...>> with a "$param$" argument.
+-->
+
+\procedure resetBtn(attr)
+<$button tooltip=<<hover-tilt-lingo-text Buttons/Reset>> class="tc-btn-invisible" disabled={{{ [[$:/plugins/nikorion/hover-tilt/settings/]addsuffix<attr>!is[tiddler]then[yes]else[no]] }}}>
+<$action-deletetiddler $tiddler={{{ [[$:/plugins/nikorion/hover-tilt/settings/]addsuffix<attr>] }}}/>{{$:/core/images/refresh-button}}
+</$button>
+\end
+
+\procedure labelCell(attr)
+<td>
+<$transclude $variable="hover-tilt-lingo" title={{{ [[Playground/Label/]addsuffix<attr>] }}}/>
+<div class="ht-attr-code"><code><<attr>></code></div>
+</td>
+\end
+
+\procedure rangeRow(attr, min, max, increment)
+<tr>
+<$transclude $variable="labelCell" attr=<<attr>>/>
+<td>
+<$range tiddler={{{ [[$:/plugins/nikorion/hover-tilt/settings/]addsuffix<attr>] }}} field="text" min=<<min>> max=<<max>> increment=<<increment>>/>
+<span class="ht-value"><$text text={{{ [[$:/plugins/nikorion/hover-tilt/settings/]addsuffix<attr>get[text]] }}}/></span>
+</td>
+<td><$transclude $variable="resetBtn" attr=<<attr>>/></td>
+</tr>
+\end
+
+\procedure sectionRow(key)
+<tr class="ht-section"><td colspan="3">//<$transclude $variable="hover-tilt-lingo" title={{{ [[Settings/Section/]addsuffix<key>] }}}/>//</td></tr>
+\end
+
+<style>
+.ht-settings table { width: 100%; }
+.ht-settings th, .ht-settings td { padding: 4px 10px; vertical-align: middle; border-left: 0; border-right: 0; }
+.ht-settings td:first-child { width: 12em; }
+.ht-settings input[type="range"] { width: 65%; vertical-align: middle; }
+.ht-settings tr.ht-section td { padding-top: 12px; opacity: 0.75; font-weight: 600; border-bottom: 1px solid rgba(128,128,128,0.25); }
+.ht-attr-code { font-family: monospace; font-size: 0.8em; opacity: 0.6; margin-top: 2px; }
+.ht-value { display: inline-block; min-width: 3.5em; text-align: right; font-family: monospace; opacity: 0.8; }
+</style>
+
+<<hover-tilt-lingo Settings/Hint>>
+
+<div class="ht-settings">
+
+<table>
+
+<<sectionRow tilt>>
+<<rangeRow "tiltFactor" "0" "3" "0.1">>
+<<rangeRow "scaleFactor" "1" "1.5" "0.01">>
+
+<<sectionRow spring>>
+<<rangeRow "stiffness" "0.01" "0.5" "0.01">>
+<<rangeRow "damping" "0.05" "1" "0.01">>
+<<rangeRow "enterDelay" "0" "1000" "50">>
+<<rangeRow "exitDelay" "0" "1000" "50">>
+
+<<sectionRow glare>>
+<<rangeRow "glareIntensity" "0" "3" "0.1">>
+<<rangeRow "glareHue" "0" "360" "5">>
+<tr>
+<<labelCell "blendMode">>
+<td>
+<$select tiddler="$:/plugins/nikorion/hover-tilt/settings/blendMode" field="text">
+<option value="normal">normal</option>
+<option value="overlay">overlay</option>
+<option value="screen">screen</option>
+<option value="color-dodge">color-dodge</option>
+<option value="color-burn">color-burn</option>
+<option value="hard-light">hard-light</option>
+<option value="soft-light">soft-light</option>
+<option value="multiply">multiply</option>
+<option value="darken">darken</option>
+<option value="lighten">lighten</option>
+<option value="difference">difference</option>
+<option value="exclusion">exclusion</option>
+<option value="hue">hue</option>
+<option value="saturation">saturation</option>
+<option value="color">color</option>
+<option value="luminosity">luminosity</option>
+</$select>
+</td>
+<td><<resetBtn "blendMode">></td>
+</tr>
+
+<<sectionRow shadow>>
+<tr>
+<<labelCell "shadow">>
+<td>
+<$radio tiddler="$:/plugins/nikorion/hover-tilt/settings/shadow" field="text" value="yes">&nbsp;yes</$radio>
+<$radio tiddler="$:/plugins/nikorion/hover-tilt/settings/shadow" field="text" value="no">&nbsp;no</$radio>
+</td>
+<td><<resetBtn "shadow">></td>
+</tr>
+<<rangeRow "shadowBlur" "0" "40" "1">>
+
+<<sectionRow layout>>
+<tr>
+<<labelCell "borderRadius">>
+<td><$edit-text tiddler="$:/plugins/nikorion/hover-tilt/settings/borderRadius" field="text" tag="input" default="12px"/></td>
+<td><<resetBtn "borderRadius">></td>
+</tr>
+
+</table>
+
+</div>

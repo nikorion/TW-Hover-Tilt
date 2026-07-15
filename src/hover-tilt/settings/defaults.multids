@@ -1,0 +1,14 @@
+title: $:/plugins/nikorion/hover-tilt/settings/
+
+tiltFactor: 1.2
+scaleFactor: 1
+stiffness: 0.066
+damping: 0.25
+enterDelay: 0
+exitDelay: 200
+shadow: yes
+shadowBlur: 12
+blendMode: overlay
+glareIntensity: 1
+glareHue: 270
+borderRadius: 12px

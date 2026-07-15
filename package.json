@@ -1,0 +1,28 @@
+{
+  "name": "tw-hover-tilt",
+  "version": "0.4.1",
+  "description": "TiddlyWiki widget wrapping hover-tilt's Web Component for a 3D tilt/glare effect on any content",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint \"src/hover-tilt/modules/*.js\" --format ./scripts/eslint-compact.cjs",
+    "lint:fix": "eslint \"src/hover-tilt/modules/*.js\" --fix --format ./scripts/eslint-compact.cjs",
+    "vendor:hover-tilt": "node scripts/vendor-hover-tilt.cjs",
+    "update:hover-tilt": "pnpm update hover-tilt && pnpm vendor:hover-tilt && pnpm build",
+    "dev": "node scripts/dev.cjs",
+    "build": "tiddlywiki wiki --build plugin-json",
+    "build:demo": "tiddlywiki wiki --build demo",
+    "build:library": "tiddlywiki library --build library",
+    "build:site": "tiddlywiki wiki --build demo && tiddlywiki library --build library"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^16.0.0",
+    "hover-tilt": "^0.1.0",
+    "nodemon": "^3.0.0",
+    "terser": "^5.48.0",
+    "tiddlywiki": "^5.3.8"
+  },
+  "packageManager": "pnpm@11.9.0"
+}

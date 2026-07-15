@@ -1,0 +1,31 @@
+title: $:/plugins/nikorion/hover-tilt/language/en-GB/Playground/
+
+Heading: playground
+Intro/State: Every control below is backed by a `$:/state/plugins/nikorion/hover-tilt/playground/<attr>` tiddler. The preview reads the same tiddlers directly, so it updates live as you drag/type/click — no page reload needed.
+Intro/Body: `<$HoverTilt>` applies the tilt effect to whatever is written in its own body — the card below is ordinary wikitext, not a widget attribute.
+Section/Preview: Preview
+Section/Controls: Controls
+Section/ImageExample: Image example
+Col/Attribute: Attribute
+Col/Value: Value
+DemoCard: Hover me
+Intro/Image: Slotting an `<img>` instead of a text card. Note: the [[hover-tilt docs site|https://hover-tilt.simey.me]] uses Tailwind, so its `class="[&::part(container)]:rounded-[...]"` / `rounded-[inherit]` snippets don't work as-is here — retranslate them to real CSS + the `borderRadius` attribute. The image gets its rounded corners via `border-radius: inherit`, and `max-width` constrains its size (no layout framework to do it otherwise).
+Intro/ImageRadius: The CSS `border-radius` property accepts two kinds of value: a //fixed// length (e.g. `12px`, always the same number of pixels whatever the element's size) or a //percentage//. Here we use a percentage, `4.55% / 3.5%`, taken from hover-tilt's [[bespoke Pokémon-card demo|https://hover-tilt.simey.me/bespoke/pokemon-cards/]]. The `/` separates //two// radii: the number before it (`4.55%`) is a percentage of the element's ''width'', the one after (`3.5%`) a percentage of its ''height''. Because the two values differ, the corners are slightly //elliptical// (a touch more stretched horizontally than vertically) — exactly the corner profile of a real playing card.
+Intro/ImageRadius/Example: Worked example: this image is roughly 180 px wide by 250 px tall. So the horizontal radius is `4.55% × 180 ≈ 8 px` and the vertical radius `3.5% × 250 ≈ 9 px`. That is the whole point of a percentage: show the card twice as large and both radii double //automatically//, keeping the corner curve proportional. A fixed `12px` would instead look too round on a small thumbnail and too square at large size — you would have to recompute it for every size.
+Intro/ImageRadius/Inherit: One last, very handy point: the `<img>` carries `border-radius: inherit`, i.e. "take the same radius as your parent". The radius is therefore written ''only once'', on the host via the widget's `borderRadius` attribute; the image, glare and shadow all align to it on their own, at any size. Changing the radius in that single place resynchronises everything.
+ImageAlt: Pokémon #0035: Clefairy
+Label/tiltFactor: Tilt factor
+Label/tiltFactorY: Tilt factor (Y axis)
+Label/scaleFactor: Scale factor
+Label/stiffness: Stiffness
+Label/damping: Damping
+Label/enterDelay: Enter delay
+Label/exitDelay: Exit delay
+Label/tiltStiffness: Tilt stiffness
+Label/tiltDamping: Tilt damping
+Label/shadow: Shadow
+Label/shadowBlur: Shadow blur
+Label/blendMode: Blend mode
+Label/glareIntensity: Glare intensity
+Label/glareHue: Glare hue
+Label/borderRadius: Border radius

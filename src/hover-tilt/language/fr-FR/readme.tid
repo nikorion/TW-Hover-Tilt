@@ -1,0 +1,173 @@
+title: $:/plugins/nikorion/hover-tilt/language/fr-FR/readme
+type: text/vnd.tiddlywiki
+
+!! Aperçu
+
+Un widget `<$HoverTilt>` qui apporte l'effet 3D d'inclinaison/reflet suivant le pointeur de [[hover-tilt|https://hover-tilt.simey.me]] à n'importe quel contenu TiddlyWiki — le même effet que celui de la [[démo des cartes holo Pokémon|https://hover-tilt.simey.me/bespoke/pokemon-cards/]].
+
+hover-tilt livre son propre Web Component prébuilt — un élément personnalisé `<hover-tilt>` auto-enregistré et sans dépendance. `modules/hover-tilt.min.js` vendore ce fichier tel quel (en-tête de module TiddlyWiki ajouté, son unique instruction ESM `export` retirée), et le widget `<$HoverTilt>` le charge via `require()` comme n'importe quel autre module TiddlyWiki, puis pilote directement l'élément `<hover-tilt>` obtenu.
+
+* `<$HoverTilt>` — enrobe tout ce qui est écrit dans son propre corps de l'effet 3D d'inclinaison/reflet de hover-tilt
+
+---
+
+!! Corps / contenu inséré
+
+hover-tilt applique son effet d'inclinaison à tout ce qui est écrit dans son propre corps — pas à un élément fixe (voir sa [[doc « bespoke »|https://hover-tilt.simey.me/bespoke/pokemon-cards/]] pour un exemple concret). `<$HoverTilt>` reprend ce principe : tout ce qui est imbriqué dans les balises du widget est rendu par TiddlyWiki comme d'habitude, puis devient le contenu inséré de hover-tilt.
+
+<$codeblock code="""<$HoverTilt><img src="card.png" style="width:220px;border-radius:12px;"/></$HoverTilt>"""/>
+
+Utilisé auto-fermant / sans corps, le widget n'incline rien (un emplacement vide).
+
+---
+
+!! Attributs
+
+Chaque attribut ci-dessous est un passe-plat direct vers [[hover-tilt|https://hover-tilt.simey.me]] — voir sa doc pour le comportement complet de chacun.
+
+Chaque valeur est résolue en trois niveaux : l'attribut du widget, puis le tiddler de réglage global `$:/plugins/nikorion/hover-tilt/settings/<attr>` (édité via l'onglet //Hover Tilt// du [[Panneau de configuration|$:/ControlPanel]]), puis le défaut interne de hover-tilt. La colonne //Défaut// ci-dessous est le réglage livré par le plugin ; omettre un attribut pour en hériter.
+
+|!Attribut |!Valeurs |!Défaut |!Description |
+| `tiltFactor`<br>//Facteur d'inclinaison// |nombre |`1.2` |Multiplicateur d'intensité de l'inclinaison |
+| `tiltFactorY`<br>//Facteur d'inclinaison (axe Y)// |nombre |identique à `tiltFactor` |Facteur d'inclinaison distinct pour l'axe Y |
+| `scaleFactor`<br>//Facteur d'échelle// |nombre |`1` |Agrandissement à l'état actif |
+| `stiffness`<br>//Rigidité// |nombre |`0.066` |Rigidité du ressort (échelle/opacité) — plus élevé = plus vif. Le défaut reprend le ressort d'interaction souple des cartes holo Pokémon, pas celui (plus vif) de hover-tilt, `0.2` |
+| `damping`<br>//Amortissement// |nombre |`0.25` |Amortissement du ressort (échelle/opacité) — plus élevé = moins rebondissant. Le défaut reprend celui des cartes holo Pokémon, pas celui de hover-tilt, `0.8` |
+| `tiltStiffness`<br>//Rigidité (inclinaison)// |nombre |= `stiffness` |Rigidité d'un ressort d'inclinaison //distinct// — omettre pour réutiliser le ressort d'échelle |
+| `tiltDamping`<br>//Amortissement (inclinaison)// |nombre |= `damping` |Amortissement du ressort d'inclinaison distinct — omettre pour réutiliser le ressort d'échelle |
+| `enterDelay`<br>//Délai d'entrée// |nombre (ms) |`0` |Délai avant activation à l'entrée du pointeur |
+| `exitDelay`<br>//Délai de sortie// |nombre (ms) |`200` |Délai avant désactivation à la sortie du pointeur |
+| `shadow`<br>//Ombre// |`yes` · `no` |`yes` |Ombre portée qui suit l'inclinaison |
+| `shadowBlur`<br>//Flou de l'ombre// |nombre |`12` |Rayon de flou de l'ombre |
+| `blendMode`<br>//Mode de fusion// |mode de fusion CSS |`overlay` |`mix-blend-mode` de la couche de reflet |
+| `glareIntensity`<br>//Intensité du reflet// |nombre |`1` |Multiplicateur d'opacité du reflet |
+| `glareHue`<br>//Teinte du reflet// |nombre (0-360) |`270` |Teinte de la couleur du reflet |
+| `glareMask`<br>//Masque du reflet// |valeur CSS `mask-image` |— |Masque la couche de reflet selon une forme |
+| `glareMaskMode`<br>//Mode du masque de reflet// |valeur CSS `mask-mode` |celui de hover-tilt |`match-source` · `luminance` · `alpha` · `none` |
+| `glareMaskComposite`<br>//Composition du masque de reflet// |valeur CSS `mask-composite` |celui de hover-tilt |`add` · `subtract` · `exclude` · `intersect` |
+| `borderRadius`<br>//Rayon des coins// |longueur CSS |`12px` |Rayon des coins de base de l'hôte (les couches reflet/ombre en héritent) |
+| `class`<br>//Classe(s)// |chaîne |— |Classe(s) CSS supplémentaire(s) sur le conteneur de hover-tilt |
+| `style`<br>//Style inline// |chaîne |— |Style inline supplémentaire sur le conteneur de hover-tilt, ajouté après la base requise par le widget `display: inline-block; border-radius: <borderRadius>;` |
+
+!!! Rayon des coins : une seule source de vérité
+
+Les couches reflet/ombre de hover-tilt vivent dans son //shadow DOM// et héritent leur `border-radius` de l'**hôte** (l'élément `<hover-tilt>`), pas de ton contenu. Arrondir seulement ta carte laisse donc reflet/ombre à coins carrés (ou au défaut `12px`).
+
+Pour ne définir le rayon **qu'une fois**, mets la vraie valeur sur l'attribut `borderRadius` du widget et `border-radius: inherit` sur ton contenu : celui-ci récupère alors le rayon de l'hôte, et reflet + ombre + contenu restent toujours alignés. À l'inverse, coder le rayon en dur des deux côtés oblige à les garder synchronisés à la main.
+
+---
+
+!! Utilisation
+
+<$codeblock language="html" code="""<$HoverTilt>
+
+<div class="card">
+Survolez-moi !
+</div>
+
+<style>
+.card {
+display:grid;
+place-items:center;
+width:220px;
+height:300px;
+border-radius:12px;
+background:linear-gradient(135deg,#2b2f38,#1a1c22);
+color:white;
+font:600 1.1rem system-ui,sans-serif;
+}
+</style>
+
+</$HoverTilt>"""/>
+
+
+<$HoverTilt>
+<div class="card">
+Survolez-moi !
+</div>
+<style>
+.card {
+display:grid;
+place-items:center;
+width:220px;
+height:300px;
+border-radius:12px;
+background:linear-gradient(135deg,#2b2f38,#1a1c22);
+color:white;
+font:600 1.1rem system-ui,sans-serif;
+}
+</style>
+</$HoverTilt>
+
+!!! Régler les attributs propres à hover-tilt
+
+<$codeblock language="html" code="""<$HoverTilt tiltFactor="2" glareHue="150" glareIntensity="1.5" scaleFactor="1.05" shadow="yes">
+
+...
+"""/>
+
+<$HoverTilt tiltFactor="2" glareHue="150" glareIntensity="1.5" scaleFactor="1.05" shadow="yes">
+<div class="card">
+Survolez-moi !
+</div>
+<style>
+.card {
+display:grid;
+place-items:center;
+width:220px;
+height:300px;
+border-radius:12px;
+background:linear-gradient(135deg,#2b2f38,#1a1c22);
+color:white;
+font:600 1.1rem system-ui,sans-serif;
+}
+</style>
+</$HoverTilt>
+
+Voir aussi le tiddler [[banc d'essai|$:/plugins/nikorion/hover-tilt/playground]] pour un banc d'essai interactif réglant tous les attributs à la fois.
+
+---
+
+!! Référence des techniques d'effet
+
+Quelques techniques CSS classiques des cartes holographiques Pokémon (paillettes, éclat métallique, brillance irisée) peuvent se superposer à l'inclinaison/reflet propre à `hover-tilt` via ses attributs natifs (voir le tableau des Attributs ci-dessus — `glareHue`, `glareIntensity`, `blendMode`, `shadow`, etc.) plutôt qu'avec des surcouches `::before`/`::after` faites à la main. Le tableau ci-dessous sert de référence au cas où un rendu que `hover-tilt` ne peut produire nativement serait nécessaire.
+
+|!Effet |!Résultat visuel |!Technique CSS |
+|Reflet |Halo lumineux suivant le pointeur — la base de tout effet holo |`radial-gradient(farthest-corner circle at var(--mx) var(--my), ...)` — fourni par `hover-tilt`, réglable via `glareHue`/`glareIntensity`/`blendMode` |
+|Paillettes / grain |Éclats scintillants |Bruit SVG (`feTurbulence`) fusionné en `screen`, luminosité augmentée avant `contrast()` |
+|Éclat métallique / foil |Bandes de métal brossé |`repeating-linear-gradient` incliné + `overlay` |
+|Irisé / décalage arc-en-ciel |Miroitement pétrole (holofoil Trainer Gallery) |`repeating-linear-gradient` arc-en-ciel + `color-dodge` |
+|Barres holo |Holo classique années 90 — bandes arc-en-ciel + barres verticales claires/sombres |Deux `repeating-linear-gradient` combinés, `soft-light`/`screen`/`overlay` |
+|Galaxie / cosmique |Toile de fond nébuleuse/champ d'étoiles |Image externe + gradient diagonal, `color-dodge`/`color-burn` |
+|Croisillon radiant |Motif tissé/gaufré |Deux `repeating-linear-gradient` d'angles opposés, `exclusion`/`color-dodge` |
+|Foil or/métal |Éclat or chaud « secret rare » |Texture métal + arc-en-ciel, `color-burn`/`darken` |
+|Inclinaison 3D ✓ |L'inclinaison elle-même |`rotateX`/`rotateY` suivant le pointeur, `perspective`, `transform-style: preserve-3d` — fourni par `hover-tilt` |
+|Lueur / ombre active ✓ |Halo lumineux à l'interaction, distinct du reflet |Attributs `shadow`/`shadowBlur` de `hover-tilt` |
+|Masquage clip-path |Confine l'effet holo à l'illustration, pas au cadre/texte |`clip-path: inset(...)` ou `polygon(...)` sur la couche d'effet |
+
+✓ = actuellement actif, via les attributs propres à `hover-tilt` plutôt que du CSS personnalisé.
+
+!!! Modes de fusion utilisés
+
+|!Mode de fusion |!Effet |!Utilisé pour |
+|`screen` |Éclaircit doucement, ne sature jamais jusqu'au blanc pur |Paillettes, Holo classique |
+|`color-dodge` |Éclaircit agressivement (`base ÷ (1 − fusion)`), peut saturer jusqu'au blanc |Irisé, Galaxie, Or, Radiant |
+|`color-burn` |Inverse de color-dodge — assombrit agressivement |Galaxie, Rainbow Secret, Or |
+|`overlay` |Combine multiply (zones sombres) + screen (zones claires) — renforce le contraste existant |Éclat métallique, Holo |
+|`hard-light` |Comme overlay mais piloté par la couche du dessus plutôt que la base — plus dur |V, VMAX, VSTAR, Trainer Gallery |
+|`soft-light` |Version douce de hard-light — éclaircit/assombrit en douceur |Holo, V |
+|`exclusion` |Comme difference mais plus doux — inverse partiellement les couleurs superposées |Couches `:after` pour plus de profondeur, Radiant |
+|`multiply` |Assombrit en multipliant les couleurs — n'éclaircit jamais |Radiant (motif tissé) |
+|`darken` |Garde la plus sombre des deux couleurs, pixel par pixel |Gold Secret, Radiant |
+
+`screen`/`overlay`/`soft-light`/`hard-light` sont relativement prévisibles et sûrs pour commencer. `color-dodge`/`color-burn`/`exclusion` sont plus spectaculaires mais bien plus sensibles à ce qui se trouve dessous — à garder en tête quand un fond « plat » fait paraître un effet plus faible que prévu.
+
+---
+
+!! Crédits
+
+Bâti sur le Web Component propre à [[hover-tilt|https://hover-tilt.simey.me]] (lui-même construit avec [[Svelte|https://svelte.dev]]).
+
+Développé avec l'aide d'Anthropic Claude pour le code, la relecture, le remaniement et la documentation.
+
+Historique des versions et licence : voir les onglets //history// et //license// du plugin.

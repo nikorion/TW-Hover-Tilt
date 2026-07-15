@@ -1,0 +1,31 @@
+{
+  "description": "TW-Hover-Tilt development wiki",
+  "plugins": [
+    "tiddlywiki/filesystem",
+    "tiddlywiki/tiddlyweb",
+    "nikorion/hover-tilt"
+  ],
+  "themes": [
+    "tiddlywiki/vanilla"
+  ],
+  "languages": [
+    "fr-FR"
+  ],
+  "pluginPath": "../src",
+  "build": {
+    "plugin-json": [
+      "--output", "dist",
+      "--render", "$:/core/templates/exporters/JsonFile", "TW-Hover-Tilt-Plugin.json", "text/plain", "", "exportFilter", "[[$:/plugins/nikorion/hover-tilt]]"
+    ],
+    "demo": [
+      "--output", "docs",
+      "--render", "$:/core/templates/exporters/JsonFile", "TW-Hover-Tilt-Plugin.json", "text/plain", "", "exportFilter", "[[$:/plugins/nikorion/hover-tilt]]",
+      "--savetiddlers", "[!is[system]] :filter[get[type]prefix[image/]] -[get[type]match[image/svg+xml]]", "images",
+      "--setfield", "[!is[system]] :filter[get[type]prefix[image/]] -[get[type]match[image/svg+xml]]", "_canonical_uri", "$:/core/templates/canonical-uri-external-image", "text/plain",
+      "--setfield", "[!is[system]] :filter[get[type]prefix[image/]] -[get[type]match[image/svg+xml]]", "text", "", "text/plain",
+      "--rendertiddler", "$:/core/save/offline-external-js", "index.html", "text/plain", "",
+      "publishFilter", "-[[$:/dev/hmr]] -[[$:/plugins/wikilabs/link-to-tabs]]",
+      "--render", "$:/core/templates/tiddlywiki5.js", "[[tiddlywikicore-]addsuffix<version>addsuffix[.js]]", "text/plain"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+node_modules/
+dist/
+docs/
+.DS_Store
+Thumbs.db
+
+# Etat de session du wiki de dev, reecrit par le serveur a chaque build/session
+wiki/tiddlers/$__StoryList.tid
+
+# Notes Claude locales (perso, non versionnées)
+CLAUDE.local.md
+
+# Contexte/doc Claude et fichier d'espace de travail : usage local, pas versionnés
+CLAUDE.md
+guides/
+*.code-workspace

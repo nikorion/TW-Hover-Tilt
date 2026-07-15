@@ -1,0 +1,9 @@
+title: $:/plugins/nikorion/hover-tilt/readme
+type: text/vnd.tiddlywiki
+
+\whitespace trim
+<$let _lang={{{ [[$:/language]get[text]get[name]else[en-GB]] }}}>
+<$transclude $mode="block" $tiddler={{{ [[$:/plugins/nikorion/hover-tilt/language/]addsuffix<_lang>addsuffix[/readme]] }}}>
+<$transclude $mode="block" $tiddler="$:/plugins/nikorion/hover-tilt/language/en-GB/readme"/>
+</$transclude>
+</$let>

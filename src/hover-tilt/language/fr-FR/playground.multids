@@ -1,0 +1,31 @@
+title: $:/plugins/nikorion/hover-tilt/language/fr-FR/Playground/
+
+Heading: banc d'essai
+Intro/State: Chaque contrôle ci-dessous est adossé à un tiddler `$:/state/plugins/nikorion/hover-tilt/playground/<attr>`. L'aperçu lit ces mêmes tiddlers directement : il se met à jour en direct au fil des glissements/saisies/clics — sans recharger la page.
+Intro/Body: `<$HoverTilt>` applique l'effet d'inclinaison à tout ce qui est écrit dans son corps — la carte ci-dessous est du wikitext ordinaire, pas un attribut du widget.
+Section/Preview: Aperçu
+Section/Controls: Contrôles
+Section/ImageExample: Exemple avec image
+Col/Attribute: Attribut
+Col/Value: Valeur
+DemoCard: Survolez-moi
+Intro/Image: Insertion d'une `<img>` à la place d'une carte de texte. Note : le [[site de doc hover-tilt|https://hover-tilt.simey.me]] utilise Tailwind ; ses extraits `class="[&::part(container)]:rounded-[...]"` / `rounded-[inherit]` ne fonctionnent pas tels quels ici — les retranscrire en vrai CSS + l'attribut `borderRadius`. L'image obtient ses coins arrondis via `border-radius: inherit`, et `max-width` contraint sa taille (aucun framework de mise en page pour le faire autrement).
+Intro/ImageRadius: La propriété CSS `border-radius` accepte deux sortes de valeurs : une longueur //fixe// (ex. `12px`, toujours le même nombre de pixels quelle que soit la taille de l'élément) ou un //pourcentage//. Ici on utilise un pourcentage, `4.55% / 3.5%`, repris de la [[démo « bespoke » cartes Pokémon|https://hover-tilt.simey.me/bespoke/pokemon-cards/]] de hover-tilt. La barre `/` sépare //deux// rayons : le nombre avant elle (`4.55%`) est un pourcentage de la ''largeur'' de l'élément, celui après (`3.5%`) un pourcentage de sa ''hauteur''. Comme les deux valeurs diffèrent, les coins sont légèrement //elliptiques// (un peu plus étirés horizontalement que verticalement) — exactement le profil des coins d'une vraie carte à jouer.
+Intro/ImageRadius/Example: Exemple chiffré : cette image fait environ 180 px de large sur 250 px de haut. Le rayon horizontal vaut donc `4.55% × 180 ≈ 8 px` et le rayon vertical `3.5% × 250 ≈ 9 px`. Tout l'intérêt du pourcentage est là : si on affiche la carte deux fois plus grande, les deux rayons doublent //automatiquement// et le galbe des coins reste proportionnel. Un `12px` figé, lui, paraîtrait trop rond sur une petite vignette et trop carré sur un grand format — il faudrait le recalculer à chaque taille.
+Intro/ImageRadius/Inherit: Dernier point, et le plus pratique : l'`<img>` porte `border-radius: inherit`, c'est-à-dire « prends le même rayon que ton parent ». Le rayon n'est donc écrit ''qu'une seule fois'', sur l'hôte via l'attribut `borderRadius` du widget ; l'image, le reflet et l'ombre s'y alignent tous seuls, à n'importe quelle taille. Changer le rayon à un seul endroit suffit à tout resynchroniser.
+ImageAlt: Pokémon #0035 : Mélofée
+Label/tiltFactor: Facteur d'inclinaison
+Label/tiltFactorY: Facteur d'inclinaison (axe Y)
+Label/scaleFactor: Facteur d'échelle
+Label/stiffness: Rigidité
+Label/damping: Amortissement
+Label/enterDelay: Délai d'entrée
+Label/exitDelay: Délai de sortie
+Label/tiltStiffness: Rigidité (inclinaison)
+Label/tiltDamping: Amortissement (inclinaison)
+Label/shadow: Ombre
+Label/shadowBlur: Flou de l'ombre
+Label/blendMode: Mode de fusion
+Label/glareIntensity: Intensité du reflet
+Label/glareHue: Teinte du reflet
+Label/borderRadius: Rayon des coins

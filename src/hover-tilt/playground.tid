@@ -1,0 +1,161 @@
+title: $:/plugins/nikorion/hover-tilt/playground
+type: text/vnd.tiddlywiki
+
+<!--
+Interactive playground: every control is backed by a
+$:/state/plugins/nikorion/hover-tilt/playground/<attr> state tiddler, read
+back directly by the <$HoverTilt> preview below, so it updates live. An empty
+state (control untouched / reset) yields an empty attribute, which the widget
+treats as unset — falling back to the global setting, then hover-tilt's own
+default. NOTE: procedures do NOT substitute $param$ (that is \define-only);
+parameters are forwarded to nested procedures via <$transclude $variable=...>.
+-->
+
+\procedure resetBtn(attr)
+<$button tooltip=<<hover-tilt-lingo-text Buttons/Reset>> class="tc-btn-invisible" disabled={{{ [[$:/state/plugins/nikorion/hover-tilt/playground/]addsuffix<attr>!is[tiddler]then[yes]else[no]] }}}>
+<$action-deletetiddler $tiddler={{{ [[$:/state/plugins/nikorion/hover-tilt/playground/]addsuffix<attr>] }}}/>{{$:/core/images/refresh-button}}
+</$button>
+\end
+
+\procedure rangeRow(attr, min, max, increment, default)
+<tr>
+<td>
+<$transclude $variable="hover-tilt-lingo" title={{{ [[Playground/Label/]addsuffix<attr>] }}}/>
+<$list filter="[[$:/language]get[text]get[name]else[en-GB]!match[en-GB]]">
+<div class="ht-attr-code"><code><<attr>></code></div>
+</$list>
+</td>
+<td>
+<$range tiddler={{{ [[$:/state/plugins/nikorion/hover-tilt/playground/]addsuffix<attr>] }}} field="text" min=<<min>> max=<<max>> increment=<<increment>> default=<<default>>/>
+<span class="ht-value"><$text text={{{ [[$:/state/plugins/nikorion/hover-tilt/playground/]addsuffix<attr>get[text]else<default>] }}}/></span>
+</td>
+<td><$transclude $variable="resetBtn" attr=<<attr>>/></td>
+</tr>
+\end
+
+<style>
+.ht-playground table { width: 100%; }
+.ht-playground th, .ht-playground td { padding: 4px 10px; vertical-align: middle; border-left: 0; border-right: 0; }
+.ht-playground td:first-child { width: 9em; }
+.ht-playground td:nth-child(2) { width: auto; }
+.ht-playground input[type="range"] { width: 70%; vertical-align: middle; }
+.ht-attr-code { font-family: monospace; font-size: 0.8em; opacity: 0.6; margin-top: 2px; }
+.ht-value { display: inline-block; min-width: 3.5em; text-align: right; font-family: monospace; opacity: 0.8; }
+.ht-preview { display: grid; place-items: center; padding: 40px; border-radius: 8px; margin: 12px 0 24px 0; }
+.ht-demo-card { display: grid; place-items: center; width: 220px; height: 300px; border-radius: 12px; background: linear-gradient(135deg, #2b2f38, #1a1c22); user-select: none; }
+.ht-demo-card-title { color: white; font: 600 1.1rem system-ui, sans-serif; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); pointer-events: none; -webkit-font-smoothing: antialiased; }
+.ht-demo-img { width: 180px; height: auto; display: block; border-radius: inherit; }
+</style>
+
+! `$HoverTilt` <<hover-tilt-lingo-text Playground/Heading>>
+
+<<hover-tilt-lingo Playground/Intro/State>>
+
+<<hover-tilt-lingo Playground/Intro/Body>>
+
+!! <<hover-tilt-lingo-text Playground/Section/Preview>>
+
+<div class="ht-preview">
+
+<$HoverTilt
+ tiltFactor={{$:/state/plugins/nikorion/hover-tilt/playground/tiltFactor}}
+ tiltFactorY={{$:/state/plugins/nikorion/hover-tilt/playground/tiltFactorY}}
+ scaleFactor={{$:/state/plugins/nikorion/hover-tilt/playground/scaleFactor}}
+ stiffness={{$:/state/plugins/nikorion/hover-tilt/playground/stiffness}}
+ damping={{$:/state/plugins/nikorion/hover-tilt/playground/damping}}
+ tiltStiffness={{$:/state/plugins/nikorion/hover-tilt/playground/tiltStiffness}}
+ tiltDamping={{$:/state/plugins/nikorion/hover-tilt/playground/tiltDamping}}
+ enterDelay={{$:/state/plugins/nikorion/hover-tilt/playground/enterDelay}}
+ exitDelay={{$:/state/plugins/nikorion/hover-tilt/playground/exitDelay}}
+ shadow={{$:/state/plugins/nikorion/hover-tilt/playground/shadow}}
+ shadowBlur={{$:/state/plugins/nikorion/hover-tilt/playground/shadowBlur}}
+ blendMode={{$:/state/plugins/nikorion/hover-tilt/playground/blendMode}}
+ glareIntensity={{$:/state/plugins/nikorion/hover-tilt/playground/glareIntensity}}
+ glareHue={{$:/state/plugins/nikorion/hover-tilt/playground/glareHue}}
+>
+
+<div class="ht-demo-card">
+<p class="ht-demo-card-title"><<hover-tilt-lingo-text Playground/DemoCard>></p>
+</div>
+
+</$HoverTilt>
+
+</div>
+
+!! <<hover-tilt-lingo-text Playground/Section/Controls>>
+
+<div class="ht-playground">
+
+<table>
+<tr><th><<hover-tilt-lingo-text Playground/Col/Attribute>></th><th><<hover-tilt-lingo-text Playground/Col/Value>></th><th></th></tr>
+
+<<rangeRow "tiltFactor" "0" "3" "0.1" "1.2">>
+<<rangeRow "tiltFactorY" "0" "3" "0.1" "1.2">>
+<<rangeRow "scaleFactor" "1" "1.5" "0.01" "1">>
+<<rangeRow "stiffness" "0.002" "0.5" "0.002" "0.066">>
+<<rangeRow "damping" "0.05" "1" "0.01" "0.25">>
+<<rangeRow "tiltStiffness" "0.002" "0.5" "0.002" "0.066">>
+<<rangeRow "tiltDamping" "0.05" "1" "0.01" "0.25">>
+<<rangeRow "enterDelay" "0" "1000" "50" "0">>
+<<rangeRow "exitDelay" "0" "1000" "50" "200">>
+
+<tr>
+<td>`shadow`</td>
+<td>
+<$radio tiddler="$:/state/plugins/nikorion/hover-tilt/playground/shadow" field="text" value="yes" default="yes">&nbsp;yes</$radio>
+<$radio tiddler="$:/state/plugins/nikorion/hover-tilt/playground/shadow" field="text" value="no">&nbsp;no</$radio>
+</td>
+<td><<resetBtn "shadow">></td>
+</tr>
+
+<<rangeRow "shadowBlur" "0" "40" "1" "12">>
+
+<tr>
+<td>`blendMode`</td>
+<td>
+<$select tiddler="$:/state/plugins/nikorion/hover-tilt/playground/blendMode" field="text" default="overlay">
+<option value="normal">normal</option>
+<option value="overlay">overlay</option>
+<option value="screen">screen</option>
+<option value="color-dodge">color-dodge</option>
+<option value="color-burn">color-burn</option>
+<option value="hard-light">hard-light</option>
+<option value="soft-light">soft-light</option>
+<option value="multiply">multiply</option>
+<option value="darken">darken</option>
+<option value="lighten">lighten</option>
+<option value="difference">difference</option>
+<option value="exclusion">exclusion</option>
+<option value="hue">hue</option>
+<option value="saturation">saturation</option>
+<option value="color">color</option>
+<option value="luminosity">luminosity</option>
+</$select>
+</td>
+<td><<resetBtn "blendMode">></td>
+</tr>
+
+<<rangeRow "glareIntensity" "0" "3" "0.1" "1">>
+<<rangeRow "glareHue" "0" "360" "5" "270">>
+
+</table>
+
+</div>
+
+!! <<hover-tilt-lingo-text Playground/Section/ImageExample>>
+
+<<hover-tilt-lingo Playground/Intro/Image>>
+
+<div class="ht-preview">
+
+<$HoverTilt shadow="yes" borderRadius="4.55% / 3.5%">
+<img class="ht-demo-img" src="https://hover-tilt.simey.me/pokemon/sv3-5_en_035_std.webp" alt=<<hover-tilt-lingo-text Playground/ImageAlt>> loading="lazy"/>
+</$HoverTilt>
+
+</div>
+
+<<hover-tilt-lingo Playground/Intro/ImageRadius>>
+
+<<hover-tilt-lingo Playground/Intro/ImageRadius/Example>>
+
+<<hover-tilt-lingo Playground/Intro/ImageRadius/Inherit>>
