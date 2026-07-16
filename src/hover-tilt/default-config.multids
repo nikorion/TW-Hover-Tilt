@@ -1,4 +1,4 @@
-title: $:/plugins/nikorion/hover-tilt/settings/
+title: $:/config/nikorion/hover-tilt/
 
 tiltFactor: 1.2
 scaleFactor: 1

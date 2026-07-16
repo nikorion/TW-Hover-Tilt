@@ -40,9 +40,9 @@ module-type: widget
  *   hardcoded in this file:
  *     1. the widget attribute (e.g. tiltFactor="2") — highest priority;
  *     2. the global setting tiddler
- *        `$:/plugins/nikorion/hover-tilt/settings/<attr>` (edited via the
+ *        `$:/config/nikorion/hover-tilt/<attr>` (edited via the
  *        ControlPanel tab, shipped with opinionated defaults in
- *        settings/defaults.multids);
+ *        default-config.multids);
  *     3. otherwise the value is left undefined so hover-tilt's OWN internal
  *        default applies.
  *   The plugin's opinionated defaults (softer spring, shadow on,
@@ -91,12 +91,12 @@ module-type: widget
   const lang   = require("$:/plugins/nikorion/hover-tilt/modules/lang.js");
 
   const LIBRARY_TITLE  = "$:/plugins/nikorion/hover-tilt/modules/hover-tilt.min.js";
-  const SETTINGS_PREFIX = "$:/plugins/nikorion/hover-tilt/settings/";
+  const SETTINGS_PREFIX = "$:/config/nikorion/hover-tilt/";
 
   // hover-tilt's own upstream spring default — used ONLY to fill the missing
   // half of a half-specified spring (e.g. tiltStiffness set but tiltDamping
   // not). Not a plugin default: the plugin's opinionated spring is shipped as
-  // data in settings/defaults.multids.
+  // data in default-config.multids.
   const HT_SPRING = { stiffness: 0.2, damping: 0.8 };
 
   // Opinionated default radius for the host. hover-tilt's glare/shadow layers

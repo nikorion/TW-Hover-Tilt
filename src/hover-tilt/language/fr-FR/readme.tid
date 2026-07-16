@@ -25,7 +25,7 @@ Utilisé auto-fermant / sans corps, le widget n'incline rien (un emplacement vid
 
 Chaque attribut ci-dessous est un passe-plat direct vers [[hover-tilt|https://hover-tilt.simey.me]] — voir sa doc pour le comportement complet de chacun.
 
-Chaque valeur est résolue en trois niveaux : l'attribut du widget, puis le tiddler de réglage global `$:/plugins/nikorion/hover-tilt/settings/<attr>` (édité via l'onglet //Hover Tilt// du [[Panneau de configuration|$:/ControlPanel]]), puis le défaut interne de hover-tilt. La colonne //Défaut// ci-dessous est le réglage livré par le plugin ; omettre un attribut pour en hériter.
+Chaque valeur est résolue en trois niveaux : l'attribut du widget, puis le tiddler de réglage global `$:/config/nikorion/hover-tilt/<attr>` (édité via l'onglet //Hover Tilt// du [[Panneau de configuration|$:/ControlPanel]]), puis le défaut interne de hover-tilt. La colonne //Défaut// ci-dessous est le réglage livré par le plugin ; omettre un attribut pour en hériter.
 
 |!Attribut |!Valeurs |!Défaut |!Description |
 | `tiltFactor`<br>//Facteur d'inclinaison// |nombre |`1.2` |Multiplicateur d'intensité de l'inclinaison |

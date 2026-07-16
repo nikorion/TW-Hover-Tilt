@@ -25,7 +25,7 @@ Used self-closing / with no body, the widget just tilts nothing (an empty slot).
 
 Every attribute below is a direct pass-through to [[hover-tilt|https://hover-tilt.simey.me]] — see its docs for the full behaviour of each.
 
-Each value is resolved in three tiers: the widget attribute, then the global setting tiddler `$:/plugins/nikorion/hover-tilt/settings/<attr>` (edited via the //Hover Tilt// tab in [[Control Panel|$:/ControlPanel]]), then hover-tilt's own internal default. The //Default// column below is the plugin's shipped setting; leave an attribute out to inherit it.
+Each value is resolved in three tiers: the widget attribute, then the global setting tiddler `$:/config/nikorion/hover-tilt/<attr>` (edited via the //Hover Tilt// tab in [[Control Panel|$:/ControlPanel]]), then hover-tilt's own internal default. The //Default// column below is the plugin's shipped setting; leave an attribute out to inherit it.
 
 |!Attribute |!Values |!Default |!Description |
 | `tiltFactor` |number |`1.2` |Tilt intensity multiplier |

@@ -7,8 +7,8 @@ type: text/vnd.tiddlywiki
 
 <!--
 Global-defaults tab for <$HoverTilt>. Each control edits
-$:/plugins/nikorion/hover-tilt/settings/<attr>; the reset button deletes that
-real tiddler so the shipped shadow default (settings/defaults.multids) shows
+$:/config/nikorion/hover-tilt/<attr>; the reset button deletes that
+real tiddler so the shipped shadow default (default-config.multids) shows
 through again. Labels are shared with the playground (Playground/Label/*).
 NOTE: these are \procedure definitions — $param$ textual substitution only
 happens in \define macros, never in procedures — so forwarding a parameter to
@@ -17,8 +17,8 @@ explicit attribute, not <<...>> with a "$param$" argument.
 -->
 
 \procedure resetBtn(attr)
-<$button tooltip=<<hover-tilt-lingo-text Buttons/Reset>> class="tc-btn-invisible" disabled={{{ [[$:/plugins/nikorion/hover-tilt/settings/]addsuffix<attr>!is[tiddler]then[yes]else[no]] }}}>
-<$action-deletetiddler $tiddler={{{ [[$:/plugins/nikorion/hover-tilt/settings/]addsuffix<attr>] }}}/>{{$:/core/images/refresh-button}}
+<$button tooltip=<<hover-tilt-lingo-text Buttons/Reset>> class="tc-btn-invisible" disabled={{{ [[$:/config/nikorion/hover-tilt/]addsuffix<attr>!is[tiddler]then[yes]else[no]] }}}>
+<$action-deletetiddler $tiddler={{{ [[$:/config/nikorion/hover-tilt/]addsuffix<attr>] }}}/>{{$:/core/images/refresh-button}}
 </$button>
 \end
 
@@ -33,8 +33,8 @@ explicit attribute, not <<...>> with a "$param$" argument.
 <tr>
 <$transclude $variable="labelCell" attr=<<attr>>/>
 <td>
-<$range tiddler={{{ [[$:/plugins/nikorion/hover-tilt/settings/]addsuffix<attr>] }}} field="text" min=<<min>> max=<<max>> increment=<<increment>>/>
-<span class="ht-value"><$text text={{{ [[$:/plugins/nikorion/hover-tilt/settings/]addsuffix<attr>get[text]] }}}/></span>
+<$range tiddler={{{ [[$:/config/nikorion/hover-tilt/]addsuffix<attr>] }}} field="text" min=<<min>> max=<<max>> increment=<<increment>>/>
+<span class="ht-value"><$text text={{{ [[$:/config/nikorion/hover-tilt/]addsuffix<attr>get[text]] }}}/></span>
 </td>
 <td><$transclude $variable="resetBtn" attr=<<attr>>/></td>
 </tr>
@@ -76,7 +76,7 @@ explicit attribute, not <<...>> with a "$param$" argument.
 <tr>
 <<labelCell "blendMode">>
 <td>
-<$select tiddler="$:/plugins/nikorion/hover-tilt/settings/blendMode" field="text">
+<$select tiddler="$:/config/nikorion/hover-tilt/blendMode" field="text">
 <option value="normal">normal</option>
 <option value="overlay">overlay</option>
 <option value="screen">screen</option>
@@ -102,8 +102,8 @@ explicit attribute, not <<...>> with a "$param$" argument.
 <tr>
 <<labelCell "shadow">>
 <td>
-<$radio tiddler="$:/plugins/nikorion/hover-tilt/settings/shadow" field="text" value="yes">&nbsp;yes</$radio>
-<$radio tiddler="$:/plugins/nikorion/hover-tilt/settings/shadow" field="text" value="no">&nbsp;no</$radio>
+<$radio tiddler="$:/config/nikorion/hover-tilt/shadow" field="text" value="yes">&nbsp;yes</$radio>
+<$radio tiddler="$:/config/nikorion/hover-tilt/shadow" field="text" value="no">&nbsp;no</$radio>
 </td>
 <td><<resetBtn "shadow">></td>
 </tr>
@@ -112,7 +112,7 @@ explicit attribute, not <<...>> with a "$param$" argument.
 <<sectionRow layout>>
 <tr>
 <<labelCell "borderRadius">>
-<td><$edit-text tiddler="$:/plugins/nikorion/hover-tilt/settings/borderRadius" field="text" tag="input" default="12px"/></td>
+<td><$edit-text tiddler="$:/config/nikorion/hover-tilt/borderRadius" field="text" tag="input" default="12px"/></td>
 <td><<resetBtn "borderRadius">></td>
 </tr>
 

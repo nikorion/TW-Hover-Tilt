@@ -74,7 +74,7 @@ A green `pnpm build` is a strong signal: it proves every `.tid`/`.info` file par
 
 ### License
 
-MIT — see `src/hover-tilt/license.tid`. Includes hover-tilt (MPL-2.0) and its bundled Svelte runtime (MIT).
+MIT — see `src/hover-tilt/licence.tid`. Includes hover-tilt (MPL-2.0) and its bundled Svelte runtime (MIT).
 
 ---
 
@@ -144,4 +144,4 @@ Un `pnpm build` qui passe est un signal fort : ça prouve que chaque fichier `.t
 
 ### Licence
 
-MIT — voir `src/hover-tilt/license.tid`. Inclut hover-tilt (MPL-2.0) et le runtime Svelte qu'il embarque (MIT).
+MIT — voir `src/hover-tilt/licence.tid`. Inclut hover-tilt (MPL-2.0) et le runtime Svelte qu'il embarque (MIT).
