@@ -22,7 +22,7 @@
     "hover-tilt": "^1.0.0",
     "nodemon": "^3.0.0",
     "terser": "^5.48.0",
-    "tiddlywiki": "^5.3.8"
+    "tiddlywiki": "^5.4.1"
   },
   "packageManager": "pnpm@11.9.0"
 }
