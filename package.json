@@ -19,7 +19,7 @@
     "@eslint/js": "^9.0.0",
     "eslint": "^9.0.0",
     "globals": "^16.0.0",
-    "hover-tilt": "^0.1.0",
+    "hover-tilt": "^1.0.0",
     "nodemon": "^3.0.0",
     "terser": "^5.48.0",
     "tiddlywiki": "^5.3.8"
