@@ -1,0 +1,38 @@
+title: $:/plugins/nikorion/hover-tilt/language/fr-FR/license
+type: text/vnd.tiddlywiki
+
+Distribué sous licence MIT.
+
+Copyright (©) 2026 [[nikorion|https://github.com/nikorion]]
+
+//Seule la version anglaise du texte de licence ci-dessous fait foi.//
+
+<<<
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+<<<
+
+!! Composants tiers
+
+`modules/hover-tilt.min.js` embarque tel quel le Web Component prébuilt de hover-tilt (en-tête de module TiddlyWiki ajouté, unique instruction `export` finale retirée — voir le README du projet) : aucune dépendance d'exécution distincte n'est chargée au runtime du wiki. Il contient en interne une copie compilée du runtime Svelte.
+
+!!! hover-tilt
+
+Distribué sous Mozilla Public License 2.0 (MPL-2.0).
+
+Copyright (©) 2025 Simon Goellner <simey.me@gmail.com>
+
+Source : https://hover-tilt.simey.me — https://github.com/simeydotme/hover-tilt
+
+La notice de licence MPL-2.0 est conservée intacte en tête de `modules/hover-tilt.min.js`, comme la licence l'exige.
+
+!!! Svelte
+
+Distribué sous licence MIT. Empaqueté en interne par le build de hover-tilt — non compilé par ce plugin.
+
+Copyright (©) 2016-2025 the Svelte contributors
+
+Source : https://github.com/sveltejs/svelte
