@@ -30,7 +30,15 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const WATCH_DIR = path.resolve("src/hover-tilt");
+// Two watch roots: the plugin's own shadow content (src/hover-tilt) AND the dev
+// wiki's real tiddlers (wiki/tiddlers) — editing a demo/playground tiddler by
+// hand should hot-swap exactly like editing plugin content (see
+// ../../guides/hmr-tiddlywiki.md §6 for the "wiki/tiddlers" addendum).
+const WATCH_DIRS = [path.resolve("src/hover-tilt"), path.resolve("wiki/tiddlers")];
+// Transient/generated wiki tiddlers (see .gitignore): excluded from
+// $:/config/SyncFilter so they shouldn't normally reappear on disk, but skip
+// them defensively — they carry no content worth pushing.
+const IGNORED_BASENAME = /^\$__(StoryList|HistoryList|Import|dev-hmr-port)\b/;
 // Port TW listens on — injected by scripts/dev.cjs (resolved to 8080 or a random
 // free port); 8080 is the standalone fallback. Only used by the readiness probe.
 const TW_PORT = Number(process.env.TW_PORT) || 8080;
@@ -168,33 +176,35 @@ async function handleReboot() {
 
 // ── file watching + classification ────────────────────────────────────
 let debounce = null;
-const pending = new Set();
+const pending = new Set(); // absolute paths, deduped across both watch roots
 
-fs.watch(WATCH_DIR, { recursive: true }, (_event, filename) => {
-  if (!filename) return;
-  pending.add(filename);
-  clearTimeout(debounce);
-  debounce = setTimeout(flush, 100);
-});
+for (const dir of WATCH_DIRS) {
+  fs.watch(dir, { recursive: true }, (_event, filename) => {
+    if (!filename) return;
+    if (IGNORED_BASENAME.test(path.basename(filename))) return;
+    pending.add(path.join(dir, filename));
+    clearTimeout(debounce);
+    debounce = setTimeout(flush, 100);
+  });
+}
 
 function flush() {
   const files = [...pending];
   pending.clear();
   let needsReboot = false;
   const tiddlers = [];
-  for (const filename of files) {
-    const ext = path.extname(filename).slice(1);
+  for (const abs of files) {
+    const ext = path.extname(abs).slice(1);
     if (REBOOT_EXTS.has(ext)) {
       needsReboot = true;
       continue;
     }
     if (ext === "tid" || ext === "multids") {
-      const abs = path.join(WATCH_DIR, filename);
       if (!fs.existsSync(abs)) continue;
       try {
         tiddlers.push(...tiddlersFor(abs));
       } catch (err) {
-        process.stderr.write(`[hmr] parse failed for ${filename}: ${err.message}\n`);
+        process.stderr.write(`[hmr] parse failed for ${abs}: ${err.message}\n`);
       }
     }
   }
@@ -212,4 +222,4 @@ function flush() {
   }
 }
 
-process.stdout.write(`[hmr] watching ${WATCH_DIR}\n`);
+process.stdout.write(`[hmr] watching ${WATCH_DIRS.join(", ")}\n`);
