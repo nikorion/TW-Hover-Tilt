@@ -8,7 +8,7 @@ back directly by the <$HoverTilt> preview below, so it updates live. An empty
 state (control untouched / reset) yields an empty attribute, which the widget
 treats as unset — falling back to the global setting, then hover-tilt's own
 default. NOTE: procedures do NOT substitute $param$ (that is \define-only);
-parameters are forwarded to nested procedures via <$transclude $variable=...>.
+parameters are forwarded to nested procedures by reference: <<nested attr=<<attr>> >>.
 -->
 
 \procedure resetBtn(attr)
@@ -29,7 +29,7 @@ parameters are forwarded to nested procedures via <$transclude $variable=...>.
 <$range tiddler={{{ [[$:/state/plugins/nikorion/hover-tilt/playground/]addsuffix<attr>] }}} field="text" min=<<min>> max=<<max>> increment=<<increment>> default=<<default>>/>
 <span class="ht-value"><$text text={{{ [[$:/state/plugins/nikorion/hover-tilt/playground/]addsuffix<attr>get[text]else<default>] }}}/></span>
 </td>
-<td><$transclude $variable="resetBtn" attr=<<attr>>/></td>
+<td><<resetBtn attr=<<attr>> >></td>
 </tr>
 \end
 

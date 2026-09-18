@@ -12,8 +12,8 @@ real tiddler so the shipped shadow default (default-config.multids) shows
 through again. Labels are shared with the playground (Playground/Label/*).
 NOTE: these are \procedure definitions — $param$ textual substitution only
 happens in \define macros, never in procedures — so forwarding a parameter to
-a nested procedure must go through <$transclude $variable=...> with an
-explicit attribute, not <<...>> with a "$param$" argument.
+a nested procedure must receive the parameter by reference —
+<<nested attr=<<attr>> >> — not as a "$param$" argument.
 -->
 
 \procedure resetBtn(attr)
@@ -31,12 +31,12 @@ explicit attribute, not <<...>> with a "$param$" argument.
 
 \procedure rangeRow(attr, min, max, increment)
 <tr>
-<$transclude $variable="labelCell" attr=<<attr>>/>
+<<labelCell attr=<<attr>> >>
 <td>
 <$range tiddler={{{ [[$:/config/nikorion/hover-tilt/]addsuffix<attr>] }}} field="text" min=<<min>> max=<<max>> increment=<<increment>>/>
 <span class="ht-value"><$text text={{{ [[$:/config/nikorion/hover-tilt/]addsuffix<attr>get[text]] }}}/></span>
 </td>
-<td><$transclude $variable="resetBtn" attr=<<attr>>/></td>
+<td><<resetBtn attr=<<attr>> >></td>
 </tr>
 \end
 
