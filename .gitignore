@@ -17,3 +17,4 @@ CLAUDE.md
 guides/
 *.code-workspace
 wiki/tiddlers/system/$__config_dev_hmr-port.tid
+.dev-ports.json
