@@ -11,7 +11,8 @@ exports.synchronous = true;
 exports.startup = function () {
   // Paired with scripts/dev-hmr.cjs. Receives content-tiddler pushes and reload
   // signals over SSE.
-  var source = new EventSource("http://localhost:35730/hmr");
+  var port = $tw.wiki.getTiddlerText("$:/config/dev/hmr-port", "35730").trim();
+  var source = new EventSource("http://localhost:" + port + "/hmr");
   // Several dev wikis can be open at once: obey a stream only after its hello names this wiki's own
   // server port - never another wiki's pushes (they would be saved to this wiki's disk by the syncer).
   var accepted = false;
