@@ -22,29 +22,29 @@ parameters are forwarded to nested procedures by reference: <<nested attr=<<attr
 <td>
 <$transclude $variable="hover-tilt-lingo" title={{{ [[Playground/Label/]addsuffix<attr>] }}}/>
 <$list filter="[[$:/language]get[text]get[name]else[en-GB]!match[en-GB]]">
-<div class="ht-attr-code"><code><<attr>></code></div>
+<div class="nk-attr-code"><code><<attr>></code></div>
 </$list>
 </td>
 <td>
 <$range tiddler={{{ [[$:/state/plugins/nikorion/hover-tilt/playground/]addsuffix<attr>] }}} field="text" min=<<min>> max=<<max>> increment=<<increment>> default=<<default>>/>
-<span class="ht-value"><$text text={{{ [[$:/state/plugins/nikorion/hover-tilt/playground/]addsuffix<attr>get[text]else<default>] }}}/></span>
+<span class="nk-value"><$text text={{{ [[$:/state/plugins/nikorion/hover-tilt/playground/]addsuffix<attr>get[text]else<default>] }}}/></span>
 </td>
 <td><<resetBtn attr=<<attr>> >></td>
 </tr>
 \end
 
 <style>
-.ht-playground table { width: 100%; }
-.ht-playground th, .ht-playground td { padding: 4px 10px; vertical-align: middle; border-left: 0; border-right: 0; }
-.ht-playground td:first-child { width: 9em; }
-.ht-playground td:nth-child(2) { width: auto; }
-.ht-playground input[type="range"] { width: 70%; vertical-align: middle; }
-.ht-attr-code { font-family: monospace; font-size: 0.8em; opacity: 0.6; margin-top: 2px; }
-.ht-value { display: inline-block; min-width: 3.5em; text-align: right; font-family: monospace; opacity: 0.8; }
-.ht-preview { display: grid; place-items: center; padding: 40px; border-radius: 8px; margin: 12px 0 24px 0; }
-.ht-demo-card { display: grid; place-items: center; width: 220px; height: 300px; border-radius: 12px; background: linear-gradient(135deg, #2b2f38, #1a1c22); user-select: none; }
-.ht-demo-card-title { color: white; font: 600 1.1rem system-ui, sans-serif; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); pointer-events: none; -webkit-font-smoothing: antialiased; }
-.ht-demo-img { width: 180px; height: auto; display: block; border-radius: inherit; }
+.nk-playground table { width: 100%; }
+.nk-playground th, .nk-playground td { padding: 4px 10px; vertical-align: middle; border-left: 0; border-right: 0; }
+.nk-playground td:first-child { width: 9em; }
+.nk-playground td:nth-child(2) { width: auto; }
+.nk-playground input[type="range"] { width: 70%; vertical-align: middle; }
+.nk-attr-code { font-family: monospace; font-size: 0.8em; opacity: 0.6; margin-top: 2px; }
+.nk-value { display: inline-block; min-width: 3.5em; text-align: right; font-family: monospace; opacity: 0.8; }
+.nk-preview { display: grid; place-items: center; padding: 40px; border-radius: 8px; margin: 12px 0 24px 0; }
+.nk-demo-card { display: grid; place-items: center; width: 220px; height: 300px; border-radius: 12px; background: linear-gradient(135deg, #2b2f38, #1a1c22); user-select: none; }
+.nk-demo-card-title { color: white; font: 600 1.1rem system-ui, sans-serif; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); pointer-events: none; -webkit-font-smoothing: antialiased; }
+.nk-demo-img { width: 180px; height: auto; display: block; border-radius: inherit; }
 </style>
 
 ! `$HoverTilt` <<hover-tilt-lingo-text Playground/Heading>>
@@ -55,7 +55,7 @@ parameters are forwarded to nested procedures by reference: <<nested attr=<<attr
 
 !! <<hover-tilt-lingo-text Playground/Section/Preview>>
 
-<div class="ht-preview">
+<div class="nk-preview">
 
 <$HoverTilt
  tiltFactor={{$:/state/plugins/nikorion/hover-tilt/playground/tiltFactor}}
@@ -74,8 +74,8 @@ parameters are forwarded to nested procedures by reference: <<nested attr=<<attr
  glareHue={{$:/state/plugins/nikorion/hover-tilt/playground/glareHue}}
 >
 
-<div class="ht-demo-card">
-<p class="ht-demo-card-title"><<hover-tilt-lingo-text Playground/DemoCard>></p>
+<div class="nk-demo-card">
+<p class="nk-demo-card-title"><<hover-tilt-lingo-text Playground/DemoCard>></p>
 </div>
 
 </$HoverTilt>
@@ -84,7 +84,7 @@ parameters are forwarded to nested procedures by reference: <<nested attr=<<attr
 
 !! <<hover-tilt-lingo-text Playground/Section/Controls>>
 
-<div class="ht-playground">
+<div class="nk-playground">
 
 <table>
 <tr><th><<hover-tilt-lingo-text Playground/Col/Attribute>></th><th><<hover-tilt-lingo-text Playground/Col/Value>></th><th></th></tr>
@@ -146,10 +146,10 @@ parameters are forwarded to nested procedures by reference: <<nested attr=<<attr
 
 <<hover-tilt-lingo Playground/Intro/Image>>
 
-<div class="ht-preview">
+<div class="nk-preview">
 
 <$HoverTilt shadow="yes" borderRadius="4.55% / 3.5%">
-<img class="ht-demo-img" src="https://hover-tilt.simey.me/pokemon/sv3-5_en_035_std.webp" alt=<<hover-tilt-lingo-text Playground/ImageAlt>> loading="lazy"/>
+<img class="nk-demo-img" src="https://hover-tilt.simey.me/pokemon/sv3-5_en_035_std.webp" alt=<<hover-tilt-lingo-text Playground/ImageAlt>> loading="lazy"/>
 </$HoverTilt>
 
 </div>

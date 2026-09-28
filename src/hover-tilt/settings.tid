@@ -25,7 +25,7 @@ a nested procedure must receive the parameter by reference —
 \procedure labelCell(attr)
 <td>
 <$transclude $variable="hover-tilt-lingo" title={{{ [[Playground/Label/]addsuffix<attr>] }}}/>
-<div class="ht-attr-code"><code><<attr>></code></div>
+<div class="nk-attr-code"><code><<attr>></code></div>
 </td>
 \end
 
@@ -34,29 +34,29 @@ a nested procedure must receive the parameter by reference —
 <<labelCell attr=<<attr>> >>
 <td>
 <$range tiddler={{{ [[$:/config/nikorion/hover-tilt/]addsuffix<attr>] }}} field="text" min=<<min>> max=<<max>> increment=<<increment>>/>
-<span class="ht-value"><$text text={{{ [[$:/config/nikorion/hover-tilt/]addsuffix<attr>get[text]] }}}/></span>
+<span class="nk-value"><$text text={{{ [[$:/config/nikorion/hover-tilt/]addsuffix<attr>get[text]] }}}/></span>
 </td>
 <td><<resetBtn attr=<<attr>> >></td>
 </tr>
 \end
 
 \procedure sectionRow(key)
-<tr class="ht-section"><td colspan="3">//<$transclude $variable="hover-tilt-lingo" title={{{ [[Settings/Section/]addsuffix<key>] }}}/>//</td></tr>
+<tr class="nk-section"><td colspan="3">//<$transclude $variable="hover-tilt-lingo" title={{{ [[Settings/Section/]addsuffix<key>] }}}/>//</td></tr>
 \end
 
 <style>
-.ht-settings table { width: 100%; }
-.ht-settings th, .ht-settings td { padding: 4px 10px; vertical-align: middle; border-left: 0; border-right: 0; }
-.ht-settings td:first-child { width: 12em; }
-.ht-settings input[type="range"] { width: 65%; vertical-align: middle; }
-.ht-settings tr.ht-section td { padding-top: 12px; opacity: 0.75; font-weight: 600; border-bottom: 1px solid rgba(128,128,128,0.25); }
-.ht-attr-code { font-family: monospace; font-size: 0.8em; opacity: 0.6; margin-top: 2px; }
-.ht-value { display: inline-block; min-width: 3.5em; text-align: right; font-family: monospace; opacity: 0.8; }
+.nk-settings table { width: 100%; }
+.nk-settings th, .nk-settings td { padding: 4px 10px; vertical-align: middle; border-left: 0; border-right: 0; }
+.nk-settings td:first-child { width: 12em; }
+.nk-settings input[type="range"] { width: 65%; vertical-align: middle; }
+.nk-settings tr.nk-section td { padding-top: 12px; opacity: 0.75; font-weight: 600; border-bottom: 1px solid rgba(128,128,128,0.25); }
+.nk-attr-code { font-family: monospace; font-size: 0.8em; opacity: 0.6; margin-top: 2px; }
+.nk-value { display: inline-block; min-width: 3.5em; text-align: right; font-family: monospace; opacity: 0.8; }
 </style>
 
 <<hover-tilt-lingo Settings/Hint>>
 
-<div class="ht-settings">
+<div class="nk-settings">
 
 <table>
 
