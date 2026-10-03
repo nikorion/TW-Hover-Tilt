@@ -31,7 +31,7 @@ Il fournit un widget :
 
 Jusqu'à la v0.1.0 ce plugin compilait son propre wrapper Svelte via Vite ; depuis la v0.2.0 il pilote le Web Component prébuilt de hover-tilt et ne compile plus rien lui-même (voir l'onglet history du plugin pour le journal des versions).
 
-[↑ Retour au sommaire](#sommaire)
+[↑](#sommaire "Retour au sommaire")
 
 ## Prérequis
 
@@ -47,7 +47,7 @@ Jusqu'à la v0.1.0 ce plugin compilait son propre wrapper Svelte via Vite ; depu
   ```
   Sans ce symlink, `tiddlywiki wiki --listen` / `--build` échoue avec `Cannot find plugin 'nikorion/hover-tilt'`.
 
-[↑ Retour au sommaire](#sommaire)
+[↑](#sommaire "Retour au sommaire")
 
 ## Développer
 
@@ -63,7 +63,7 @@ pnpm dev
 
 `pnpm dev` affiche l'URL à ouvrir (port libre aléatoire, réutilisé au lancement suivant). Il exécute `scripts/dev.cjs` : nodemon reboote TiddlyWiki sur changement de module JS/`plugin.info`, tandis que `scripts/dev-hmr.cjs` pousse à chaud les changements de contenu (`.tid`/`.multids`) via SSE et déclenche un rechargement complet du navigateur après un reboot.
 
-[↑ Retour au sommaire](#sommaire)
+[↑](#sommaire "Retour au sommaire")
 
 ## Mettre à jour hover-tilt
 
@@ -75,7 +75,7 @@ pnpm update:hover-tilt
 
 Cette commande enchaîne trois étapes : `pnpm update hover-tilt` (met à jour la dépendance npm), `pnpm vendor:hover-tilt` (lit `node_modules/hover-tilt/dist/hover-tilt.js`, retire son unique instruction ESM `export`, le minifie avec terser, et écrit le résultat dans `modules/hover-tilt.min.js` avec un en-tête TW/licence tout neuf — `@date` y désigne la date de vendoring, pas une date de release hover-tilt), puis `pnpm build` pour confirmer que le plugin se charge toujours correctement.
 
-[↑ Retour au sommaire](#sommaire)
+[↑](#sommaire "Retour au sommaire")
 
 ## Tester
 
@@ -89,10 +89,10 @@ pnpm build:site   # site gh-pages → docs/ : démo à moteur externe + biblioth
 
 Un `pnpm build` qui passe est un signal fort : ça prouve que chaque fichier `.tid`/`.info` se parse et que le graphe de `require()` de chaque module se résout. Ça ne prouve **pas** que le widget s'affiche correctement dans un navigateur — à vérifier manuellement dans un navigateur (URL affichée par `pnpm dev`) après `pnpm dev`.
 
-[↑ Retour au sommaire](#sommaire)
+[↑](#sommaire "Retour au sommaire")
 
 ## Licence
 
 MIT — voir `src/hover-tilt/licence.tid`. Inclut hover-tilt (MPL-2.0) et le runtime Svelte qu'il embarque (MIT).
 
-[↑ Retour au sommaire](#sommaire)
+[↑](#sommaire "Retour au sommaire")

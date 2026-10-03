@@ -31,7 +31,7 @@ It ships one widget:
 
 Up to v0.1.0 this plugin compiled its own Svelte wrapper through Vite; since v0.2.0 it drives hover-tilt's prebuilt Web Component instead and compiles nothing itself (see the plugin's history tab for the changelog).
 
-[↑ Back to contents](#contents)
+[↑](#contents "Back to contents")
 
 ## Requirements
 
@@ -47,7 +47,7 @@ Up to v0.1.0 this plugin compiled its own Svelte wrapper through Vite; since v0.
   ```
   Without it, `tiddlywiki wiki --listen` / `--build` fails with `Cannot find plugin 'nikorion/hover-tilt'`.
 
-[↑ Back to contents](#contents)
+[↑](#contents "Back to contents")
 
 ## Developing
 
@@ -63,7 +63,7 @@ pnpm dev
 
 `pnpm dev` prints the URL to open (random free port, remembered for the next run). It runs `scripts/dev.cjs`: nodemon reboots TiddlyWiki on JS/`plugin.info` changes, while `scripts/dev-hmr.cjs` pushes `.tid`/`.multids` content changes live over SSE and triggers a full browser reload after a reboot.
 
-[↑ Back to contents](#contents)
+[↑](#contents "Back to contents")
 
 ## Updating hover-tilt
 
@@ -75,7 +75,7 @@ pnpm update:hover-tilt
 
 This chains three steps: `pnpm update hover-tilt` (bumps the npm dependency), `pnpm vendor:hover-tilt` (reads `node_modules/hover-tilt/dist/hover-tilt.js`, strips its one ESM `export` statement, minifies it with terser, and writes the result to `modules/hover-tilt.min.js` with a fresh TW/license header — `@date` there is the vendoring date, not a hover-tilt release date), then `pnpm build` to confirm the plugin still loads cleanly.
 
-[↑ Back to contents](#contents)
+[↑](#contents "Back to contents")
 
 ## Testing
 
@@ -89,10 +89,10 @@ pnpm build:site   # gh-pages site → docs/: external-core demo + subscribable p
 
 A green `pnpm build` is a strong signal: it proves every `.tid`/`.info` file parses and every module's `require()` graph resolves. It does **not** prove the widget renders correctly in a browser — check that manually in a browser (URL printed by `pnpm dev`) after `pnpm dev`.
 
-[↑ Back to contents](#contents)
+[↑](#contents "Back to contents")
 
 ## License
 
 MIT — see `src/hover-tilt/licence.tid`. Includes hover-tilt (MPL-2.0) and its bundled Svelte runtime (MIT).
 
-[↑ Back to contents](#contents)
+[↑](#contents "Back to contents")
