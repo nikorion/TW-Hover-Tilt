@@ -3,7 +3,7 @@
     "name": "Hover Tilt",
     "description": "A $HoverTilt widget wrapping hover-tilt's Web Component for a 3D tilt/glare effect on any content",
     "author": "nikorion",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "core-version": ">=5.3.8",
     "plugin-type": "plugin",
     "stability": "STABILITY_1_EXPERIMENTAL",

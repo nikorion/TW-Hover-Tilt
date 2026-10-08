@@ -1,0 +1,17 @@
+title: $:/plugins/nikorion/hover-tilt/language/fr-FR/Attribute/
+
+tiltFactor: Facteur d'inclinaison
+tiltFactorY: Facteur d'inclinaison (axe Y)
+scaleFactor: Facteur d'échelle
+stiffness: Rigidité
+damping: Amortissement
+enterDelay: Délai d'entrée
+exitDelay: Délai de sortie
+tiltStiffness: Rigidité (inclinaison)
+tiltDamping: Amortissement (inclinaison)
+shadow: Ombre
+shadowBlur: Flou de l'ombre
+blendMode: Mode de fusion
+glareIntensity: Intensité du reflet
+glareHue: Teinte du reflet
+borderRadius: Rayon des coins

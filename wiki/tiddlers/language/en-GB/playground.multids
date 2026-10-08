@@ -1,4 +1,4 @@
-title: $:/plugins/nikorion/hover-tilt/language/en-GB/Playground/
+title: $:/nikorion/language/en-GB/Playground/
 
 Heading: playground
 Intro/State: Every control below is backed by a `$:/state/plugins/nikorion/hover-tilt/playground/<attr>` tiddler. The preview reads the same tiddlers directly, so it updates live as you drag/type/click — no page reload needed.
@@ -14,18 +14,3 @@ Intro/ImageRadius: The CSS `border-radius` property accepts two kinds of value: 
 Intro/ImageRadius/Example: Worked example: this image is roughly 180 px wide by 250 px tall. So the horizontal radius is `4.55% × 180 ≈ 8 px` and the vertical radius `3.5% × 250 ≈ 9 px`. That is the whole point of a percentage: show the card twice as large and both radii double //automatically//, keeping the corner curve proportional. A fixed `12px` would instead look too round on a small thumbnail and too square at large size — you would have to recompute it for every size.
 Intro/ImageRadius/Inherit: One last, very handy point: the `<img>` carries `border-radius: inherit`, i.e. "take the same radius as your parent". The radius is therefore written ''only once'', on the host via the widget's `borderRadius` attribute; the image, glare and shadow all align to it on their own, at any size. Changing the radius in that single place resynchronises everything.
 ImageAlt: Pokémon #0035: Clefairy
-Label/tiltFactor: Tilt factor
-Label/tiltFactorY: Tilt factor (Y axis)
-Label/scaleFactor: Scale factor
-Label/stiffness: Stiffness
-Label/damping: Damping
-Label/enterDelay: Enter delay
-Label/exitDelay: Exit delay
-Label/tiltStiffness: Tilt stiffness
-Label/tiltDamping: Tilt damping
-Label/shadow: Shadow
-Label/shadowBlur: Shadow blur
-Label/blendMode: Blend mode
-Label/glareIntensity: Glare intensity
-Label/glareHue: Glare hue
-Label/borderRadius: Border radius

@@ -1,4 +1,4 @@
-title: $:/plugins/nikorion/hover-tilt/language/fr-FR/Playground/
+title: $:/nikorion/language/fr-FR/Playground/
 
 Heading: banc d'essai
 Intro/State: Chaque contrôle ci-dessous est adossé à un tiddler `$:/state/plugins/nikorion/hover-tilt/playground/<attr>`. L'aperçu lit ces mêmes tiddlers directement : il se met à jour en direct au fil des glissements/saisies/clics — sans recharger la page.
@@ -14,18 +14,3 @@ Intro/ImageRadius: La propriété CSS `border-radius` accepte deux sortes de val
 Intro/ImageRadius/Example: Exemple chiffré : cette image fait environ 180 px de large sur 250 px de haut. Le rayon horizontal vaut donc `4.55% × 180 ≈ 8 px` et le rayon vertical `3.5% × 250 ≈ 9 px`. Tout l'intérêt du pourcentage est là : si on affiche la carte deux fois plus grande, les deux rayons doublent //automatiquement// et le galbe des coins reste proportionnel. Un `12px` figé, lui, paraîtrait trop rond sur une petite vignette et trop carré sur un grand format — il faudrait le recalculer à chaque taille.
 Intro/ImageRadius/Inherit: Dernier point, et le plus pratique : l'`<img>` porte `border-radius: inherit`, c'est-à-dire « prends le même rayon que ton parent ». Le rayon n'est donc écrit ''qu'une seule fois'', sur l'hôte via l'attribut `borderRadius` du widget ; l'image, le reflet et l'ombre s'y alignent tous seuls, à n'importe quelle taille. Changer le rayon à un seul endroit suffit à tout resynchroniser.
 ImageAlt: Pokémon #0035 : Mélofée
-Label/tiltFactor: Facteur d'inclinaison
-Label/tiltFactorY: Facteur d'inclinaison (axe Y)
-Label/scaleFactor: Facteur d'échelle
-Label/stiffness: Rigidité
-Label/damping: Amortissement
-Label/enterDelay: Délai d'entrée
-Label/exitDelay: Délai de sortie
-Label/tiltStiffness: Rigidité (inclinaison)
-Label/tiltDamping: Amortissement (inclinaison)
-Label/shadow: Ombre
-Label/shadowBlur: Flou de l'ombre
-Label/blendMode: Mode de fusion
-Label/glareIntensity: Intensité du reflet
-Label/glareHue: Teinte du reflet
-Label/borderRadius: Rayon des coins

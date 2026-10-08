@@ -12,7 +12,3 @@ wiki/tiddlers/$__Import.tid
 # Notes Claude locales (perso, non versionnées)
 CLAUDE.local.md
 
-# Contexte/doc Claude et fichier d'espace de travail : usage local, pas versionnés
-CLAUDE.md
-guides/
-*.code-workspace

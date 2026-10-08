@@ -14,7 +14,7 @@ Il fournit un widget :
 
 - `<$HoverTilt>` — habille tout contenu écrit dans son propre corps avec l'effet 3D d'inclinaison/reflet de hover-tilt, en exposant (presque) toute la surface de props de hover-tilt comme attributs
 - une internationalisation à la fois côté JS (`modules/lang.js`) et côté wikitext (`language/lingo.tid`), avec `en-GB` et `fr-FR` fournis
-- un playground interactif pour régler tous les attributs à la fois (`$:/plugins/nikorion/hover-tilt/playground`)
+- un playground interactif pour régler tous les attributs à la fois, dans le wiki de dev (`wiki/tiddlers/Playground.tid`) et la [démo en ligne](https://nikorion.github.io/TW-Hover-Tilt/) — non livré avec le plugin
 
 Jusqu'à la v0.1.0 ce plugin compilait son propre wrapper Svelte via Vite ; depuis la v0.2.0 il pilote le Web Component prébuilt de hover-tilt et ne compile plus rien lui-même (voir l'onglet history du plugin pour le journal des versions).
 

@@ -1,0 +1,17 @@
+title: $:/plugins/nikorion/hover-tilt/language/en-GB/Attribute/
+
+tiltFactor: Tilt factor
+tiltFactorY: Tilt factor (Y axis)
+scaleFactor: Scale factor
+stiffness: Stiffness
+damping: Damping
+enterDelay: Enter delay
+exitDelay: Exit delay
+tiltStiffness: Tilt stiffness
+tiltDamping: Tilt damping
+shadow: Shadow
+shadowBlur: Shadow blur
+blendMode: Blend mode
+glareIntensity: Glare intensity
+glareHue: Glare hue
+borderRadius: Border radius

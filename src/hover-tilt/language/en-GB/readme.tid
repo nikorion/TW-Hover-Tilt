@@ -124,7 +124,7 @@ font:600 1.1rem system-ui,sans-serif;
 </style>
 </$HoverTilt>
 
-See also the tiddler [[playground|$:/plugins/nikorion/hover-tilt/playground]] for a live playground tuning every attribute at once.
+See also the [[online demo|https://nikorion.github.io/TW-Hover-Tilt/]] for a live playground tuning every attribute at once.
 
 ---
 

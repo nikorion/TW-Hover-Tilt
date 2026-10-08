@@ -1,6 +1,6 @@
 {
   "name": "tw-hover-tilt",
-  "version": "0.4.1",
+  "version": "0.6.0",
   "description": "TiddlyWiki widget wrapping hover-tilt's Web Component for a 3D tilt/glare effect on any content",
   "private": true,
   "type": "module",

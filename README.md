@@ -14,7 +14,7 @@ It ships one widget:
 
 - `<$HoverTilt>` — wraps whatever content is written in its own body with hover-tilt's 3D tilt/glare effect, exposing (almost) hover-tilt's entire prop surface as attributes
 - i18n on both the JS side (`modules/lang.js`) and the wikitext side (`language/lingo.tid`), with `en-GB` and `fr-FR` bundled
-- an interactive playground tuning every attribute at once (`$:/plugins/nikorion/hover-tilt/playground`)
+- an interactive playground tuning every attribute at once, in the dev wiki (`wiki/tiddlers/Playground.tid`) and the [online demo](https://nikorion.github.io/TW-Hover-Tilt/) — not shipped with the plugin
 
 Up to v0.1.0 this plugin compiled its own Svelte wrapper through Vite; since v0.2.0 it drives hover-tilt's prebuilt Web Component instead and compiles nothing itself (see the plugin's history tab for the changelog).
 

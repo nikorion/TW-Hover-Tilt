@@ -1,4 +1,4 @@
-title: $:/plugins/nikorion/hover-tilt/playground
+title: Playground
 type: text/vnd.tiddlywiki
 
 <!--
@@ -7,7 +7,10 @@ $:/state/plugins/nikorion/hover-tilt/playground/<attr> state tiddler, read
 back directly by the <$HoverTilt> preview below, so it updates live. An empty
 state (control untouched / reset) yields an empty attribute, which the widget
 treats as unset — falling back to the global setting, then hover-tilt's own
-default. NOTE: procedures do NOT substitute $param$ (that is \define-only);
+default. Strings: the page's own via detect-language-lingo (dev-wiki i18n,
+wiki/tiddlers/language/<lang>/playground.multids); the attribute labels and the
+reset tooltip are the plugin's (hover-tilt-lingo), shipped for its settings tab.
+NOTE: procedures do NOT substitute $param$ (that is \define-only);
 parameters are forwarded to nested procedures by reference: <<nested attr=<<attr>> >>.
 -->
 
@@ -20,7 +23,7 @@ parameters are forwarded to nested procedures by reference: <<nested attr=<<attr
 \procedure rangeRow(attr, min, max, increment, default)
 <tr>
 <td>
-<$transclude $variable="hover-tilt-lingo" title={{{ [[Playground/Label/]addsuffix<attr>] }}}/>
+<$transclude $variable="hover-tilt-lingo" title={{{ [[Attribute/]addsuffix<attr>] }}}/>
 <$list filter="[[$:/language]get[text]get[name]else[en-GB]!match[en-GB]]">
 <div class="nk-attr-code"><code><<attr>></code></div>
 </$list>
@@ -47,13 +50,13 @@ parameters are forwarded to nested procedures by reference: <<nested attr=<<attr
 .nk-demo-img { width: 180px; height: auto; display: block; border-radius: inherit; }
 </style>
 
-! `$HoverTilt` <<hover-tilt-lingo-text Playground/Heading>>
+! `$HoverTilt` <<detect-language-lingo-text "Playground/Heading">>
 
-<<hover-tilt-lingo Playground/Intro/State>>
+<<detect-language-lingo "Playground/Intro/State">>
 
-<<hover-tilt-lingo Playground/Intro/Body>>
+<<detect-language-lingo "Playground/Intro/Body">>
 
-!! <<hover-tilt-lingo-text Playground/Section/Preview>>
+!! <<detect-language-lingo-text "Playground/Section/Preview">>
 
 <div class="nk-preview">
 
@@ -75,19 +78,19 @@ parameters are forwarded to nested procedures by reference: <<nested attr=<<attr
 >
 
 <div class="nk-demo-card">
-<p class="nk-demo-card-title"><<hover-tilt-lingo-text Playground/DemoCard>></p>
+<p class="nk-demo-card-title"><<detect-language-lingo-text "Playground/DemoCard">></p>
 </div>
 
 </$HoverTilt>
 
 </div>
 
-!! <<hover-tilt-lingo-text Playground/Section/Controls>>
+!! <<detect-language-lingo-text "Playground/Section/Controls">>
 
 <div class="nk-playground">
 
 <table>
-<tr><th><<hover-tilt-lingo-text Playground/Col/Attribute>></th><th><<hover-tilt-lingo-text Playground/Col/Value>></th><th></th></tr>
+<tr><th><<detect-language-lingo-text "Playground/Col/Attribute">></th><th><<detect-language-lingo-text "Playground/Col/Value">></th><th></th></tr>
 
 <<rangeRow "tiltFactor" "0" "3" "0.1" "1.2">>
 <<rangeRow "tiltFactorY" "0" "3" "0.1" "1.2">>
@@ -142,20 +145,20 @@ parameters are forwarded to nested procedures by reference: <<nested attr=<<attr
 
 </div>
 
-!! <<hover-tilt-lingo-text Playground/Section/ImageExample>>
+!! <<detect-language-lingo-text "Playground/Section/ImageExample">>
 
-<<hover-tilt-lingo Playground/Intro/Image>>
+<<detect-language-lingo "Playground/Intro/Image">>
 
 <div class="nk-preview">
 
 <$HoverTilt shadow="yes" borderRadius="4.55% / 3.5%">
-<img class="nk-demo-img" src="https://hover-tilt.simey.me/pokemon/sv3-5_en_035_std.webp" alt=<<hover-tilt-lingo-text Playground/ImageAlt>> loading="lazy"/>
+<img class="nk-demo-img" src="https://hover-tilt.simey.me/pokemon/sv3-5_en_035_std.webp" alt=<<detect-language-lingo-text "Playground/ImageAlt">> loading="lazy"/>
 </$HoverTilt>
 
 </div>
 
-<<hover-tilt-lingo Playground/Intro/ImageRadius>>
+<<detect-language-lingo "Playground/Intro/ImageRadius">>
 
-<<hover-tilt-lingo Playground/Intro/ImageRadius/Example>>
+<<detect-language-lingo "Playground/Intro/ImageRadius/Example">>
 
-<<hover-tilt-lingo Playground/Intro/ImageRadius/Inherit>>
+<<detect-language-lingo "Playground/Intro/ImageRadius/Inherit">>

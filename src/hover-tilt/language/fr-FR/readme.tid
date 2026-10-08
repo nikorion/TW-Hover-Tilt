@@ -124,7 +124,7 @@ font:600 1.1rem system-ui,sans-serif;
 </style>
 </$HoverTilt>
 
-Voir aussi le tiddler [[banc d'essai|$:/plugins/nikorion/hover-tilt/playground]] pour un banc d'essai interactif réglant tous les attributs à la fois.
+Voir aussi la [[démo en ligne|https://nikorion.github.io/TW-Hover-Tilt/]] pour un banc d'essai interactif réglant tous les attributs à la fois.
 
 ---
 

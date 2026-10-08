@@ -9,7 +9,7 @@ type: text/vnd.tiddlywiki
 Global-defaults tab for <$HoverTilt>. Each control edits
 $:/config/nikorion/hover-tilt/<attr>; the reset button deletes that
 real tiddler so the shipped shadow default (default-config.multids) shows
-through again. Labels are shared with the playground (Playground/Label/*).
+through again. Labels (Attribute/*) are shared with the dev wiki's Playground.
 NOTE: these are \procedure definitions — $param$ textual substitution only
 happens in \define macros, never in procedures — so forwarding a parameter to
 a nested procedure must receive the parameter by reference —
@@ -24,7 +24,7 @@ a nested procedure must receive the parameter by reference —
 
 \procedure labelCell(attr)
 <td>
-<$transclude $variable="hover-tilt-lingo" title={{{ [[Playground/Label/]addsuffix<attr>] }}}/>
+<$transclude $variable="hover-tilt-lingo" title={{{ [[Attribute/]addsuffix<attr>] }}}/>
 <div class="nk-attr-code"><code><<attr>></code></div>
 </td>
 \end
