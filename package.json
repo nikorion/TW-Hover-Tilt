@@ -10,10 +10,7 @@
     "vendor:hover-tilt": "node scripts/vendor-hover-tilt.cjs",
     "update:hover-tilt": "pnpm update hover-tilt && pnpm vendor:hover-tilt && pnpm build",
     "dev": "node ../tw-dev/dev.cjs",
-    "build": "tiddlywiki wiki --build plugin-json",
-    "build:demo": "tiddlywiki wiki --build demo",
-    "build:library": "tiddlywiki library --build library",
-    "build:site": "tiddlywiki wiki --build demo && tiddlywiki library --build library"
+    "build": "tiddlywiki wiki --build plugin-json demo"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",

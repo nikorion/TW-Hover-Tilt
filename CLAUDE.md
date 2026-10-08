@@ -26,12 +26,11 @@
 | `wiki/tiddlers/Playground.tid` | réglage interactif (état `$:/state/.../playground/<attr>`), ouvert par défaut ; **pas livré** avec le plugin depuis 0.6.0 (dans la démo en ligne) ; chaînes : `wiki/tiddlers/language/<lang>/playground.multids` via `detect-language-lingo` |
 | `src/hover-tilt/readme,license,history.tid` | à la racine de `src/hover-tilt/` (comme TW-Math, pas de dossier `tiddlers/` séparé) ; exemples d'usage = section du readme |
 | `wiki/` | wiki TW de dev (`pluginPath: ../src`) ; `tiddlers/system/` : `$__config_SyncFilter.tid` + plugins de confort |
-| `library/` | édition de build de la bibliothèque de plugins (pas un wiki de dev) |
 | `dist/` | sortie du build `plugin-json` (artefact de release), gitignoré |
-| `docs/` | sortie du build `demo`/`library` (site gh-pages), gitignoré — déployé par CI via `upload-pages-artifact`, jamais committé |
+| `docs/` | démo générée par `pnpm build` (target `demo`), gitignorée — publiée par la CI commune (`../guides/publication.md`) |
 | `scripts/vendor-hover-tilt.cjs` | régénère `hover-tilt.min.js` depuis `node_modules/hover-tilt` |
 | `scripts/eslint-compact.cjs` | formatter ESLint local (1 ligne/problème, silencieux si propre) — pas de dépendance npm, le `compact` du cœur ayant disparu en ESLint 9 |
-| `.github/workflows/deploy-pages.yml` | CI Pages : recrée le symlink `nikorion/hover-tilt` puis `pnpm build:site` |
+| `.github/workflows/ci.yml` | appelle le workflow commun de `tw-dev` (lint, build, GitHub Pages) |
 
 ## Commandes
 
@@ -40,8 +39,7 @@
 | `pnpm dev` | TW + HMR de contenu (voir Workflow dev) |
 | `pnpm lint` | ESLint sur `src/hover-tilt/modules/*.js` (min.js exclu, vendoré) via formatter compact local `scripts/eslint-compact.cjs` (1 ligne/problème, silencieux si propre — le `stylish` par défaut sortait un bloc multi-lignes coloré coûteux en contexte). Préférer au glob large `npx eslint .` |
 | `pnpm lint:fix` | idem + `--fix` (auto-corrige le corrigible sur le même glob ciblé) |
-| `pnpm build` | `dist/TW-Hover-Tilt-Plugin.json` — plugin autoporteur (tableau JSON via exporteur `JsonFile`, importable par glisser-déposer — pas `--savetiddler`, voir `guides/build-site-ci.md`) ; vert = tous les `.tid`/`.info` parsent et le graphe `require()` se résout |
-| `pnpm build:site` | site gh-pages : démo à moteur externe + bibliothèque souscriptible — détails `guides/build-site-ci.md` |
+| `pnpm build` | `dist/TW-Hover-Tilt-Plugin.json` — plugin autoporteur + démo `docs/` (JSON via exporteur `JsonFile` — pas `--savetiddler`, voir `../guides/build-html-publishfilter.md`) ; vert = tous les `.tid`/`.info` parsent et le graphe `require()` se résout |
 | `pnpm update:hover-tilt` | enchaîne `pnpm update hover-tilt && pnpm vendor:hover-tilt && pnpm build` ; `nodemon` ne met volontairement pas `hover-tilt.min.js` en ignore → restart TW + reload auto si `pnpm dev` tourne |
 
 ## Widget — points clés (détail : en-tête `hover-tilt.widget.js` + `guides/hover-tilt-widget-tw.md`)
@@ -73,5 +71,4 @@
 - `guides/hover-tilt-css.md` — variables CSS `--hover-tilt-*`, parts, piège scintillement du texte vs glare.
 - `guides/hover-tilt-effets.md` — ombre, reflet, masques, modes de fusion.
 - `guides/hover-tilt-widget-tw.md` — correspondance widget ↔ lib, cascade des valeurs, pièges ressort/Tailwind.
-- `guides/build-site-ci.md` — targets demo/library, publishFilter, CI GitHub Pages.
 - `guides/diagnostic-cannot-find-module.md` — checklist module TW introuvable.

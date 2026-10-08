@@ -62,11 +62,23 @@ There is no automated test suite. "Testing" here means:
 
 ```
 pnpm lint         # ESLint on the TiddlyWiki-side modules (hover-tilt.min.js excluded — it's vendored)
-pnpm build        # self-contained plugin JSON → dist/; fails if any tiddler/module is broken
-pnpm build:site   # gh-pages site → docs/: external-core demo + subscribable plugin library
+pnpm build        # dist/TW-Hover-Tilt-Plugin.json + docs/ (demo wiki, published by CI)
 ```
 
 A green `pnpm build` is a strong signal: it proves every `.tid`/`.info` file parses and every module's `require()` graph resolves. It does **not** prove the widget renders correctly in a browser — check that manually in a browser (URL printed by `pnpm dev`) after `pnpm dev`.
+
+## Installation
+
+**Live demo**: [https://nikorion.github.io/TW-Hover-Tilt/](https://nikorion.github.io/TW-Hover-Tilt/) — try the plugin before installing it.
+
+**From the nikorion plugin library** (TiddlyWiki then offers each new version as an update):
+
+1. In your wiki, create a tiddler tagged `$:/tags/PluginLibrary`, with a field `url` set to `https://nikorion.github.io/tw-dev/library/index.html` and a `caption` such as `nikorion`.
+2. Open *Control Panel → Plugins → Get more plugins*, choose the nikorion library and install **Hover Tilt**.
+
+**By hand**: download [`TW-Hover-Tilt-Plugin.json`](https://nikorion.github.io/TW-Hover-Tilt/TW-Hover-Tilt-Plugin.json) and drag it onto your wiki.
+
+Requires TiddlyWiki ≥ 5.3.8.
 
 ## License
 
