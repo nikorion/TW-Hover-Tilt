@@ -36,11 +36,16 @@ jobs:
 
       # TiddlyWiki resolves the plugin name "nikorion/hover-tilt" through
       # TIDDLYWIKI_PLUGIN_PATH (a dir of symlinks, one per plugin) — same mechanism as
-      # locally. Recreate just this plugin's symlink so the build resolves it off-machine.
+      # locally. Recreate the symlinks of the nikorion plugins the wiki loads so the build
+      # resolves them off-machine.
       - name: Set up plugin symlink
         run: |
           mkdir -p "$RUNNER_TEMP/tw-plugins/nikorion"
           ln -s "$GITHUB_WORKSPACE/src/hover-tilt" "$RUNNER_TEMP/tw-plugins/nikorion/hover-tilt"
+          # The dev wiki also loads nikorion/detect-language (browser language
+          # detection + detect-language-lingo, used by the Playground): fetch it.
+          git clone --depth 1 https://github.com/nikorion/TW-Detect-Language "$RUNNER_TEMP/TW-Detect-Language"
+          ln -s "$RUNNER_TEMP/TW-Detect-Language/src/detect-language" "$RUNNER_TEMP/tw-plugins/nikorion/detect-language"
           echo "TIDDLYWIKI_PLUGIN_PATH=$RUNNER_TEMP/tw-plugins" >> "$GITHUB_ENV"
 
       - run: pnpm build:site
