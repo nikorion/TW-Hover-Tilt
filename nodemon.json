@@ -1,5 +1,0 @@
-{
-  "watch": ["src/hover-tilt/modules", "src/hover-tilt/plugin.info"],
-  "ext": "js,info",
-  "exec": "tiddlywiki wiki --listen port=8080"
-}

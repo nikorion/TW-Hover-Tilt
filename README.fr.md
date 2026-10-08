@@ -44,7 +44,7 @@ Tester dans TiddlyWiki, avec reconstruction automatique et rechargement du navig
 pnpm dev
 ```
 
-`pnpm dev` affiche l'URL à ouvrir (port libre aléatoire, réutilisé au lancement suivant). Il exécute `scripts/dev.cjs` : nodemon reboote TiddlyWiki sur changement de module JS/`plugin.info`, tandis que `scripts/dev-hmr.cjs` pousse à chaud les changements de contenu (`.tid`/`.multids`) via SSE et déclenche un rechargement complet du navigateur après un reboot.
+`pnpm dev` affiche l'URL à ouvrir (port libre aléatoire, réutilisé au lancement suivant). Il exécute le serveur de dev partagé `../tw-dev` (cloné à côté de ce dépôt) : un changement de module JS ou de `plugin.info` redémarre TiddlyWiki, tout autre fichier (`.tid`, `.multids`, `.css`…) est poussé à chaud via SSE, et le navigateur se recharge après un redémarrage.
 
 ## Mettre à jour hover-tilt
 

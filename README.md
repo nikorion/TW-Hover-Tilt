@@ -44,7 +44,7 @@ Test it inside TiddlyWiki, with automatic rebuild + browser reload on every chan
 pnpm dev
 ```
 
-`pnpm dev` prints the URL to open (random free port, remembered for the next run). It runs `scripts/dev.cjs`: nodemon reboots TiddlyWiki on JS/`plugin.info` changes, while `scripts/dev-hmr.cjs` pushes `.tid`/`.multids` content changes live over SSE and triggers a full browser reload after a reboot.
+`pnpm dev` prints the URL to open (random free port, remembered for the next run). It runs the shared dev server `../tw-dev` (cloned next to this repository): a change to a JS module or `plugin.info` restarts TiddlyWiki, any other file (`.tid`, `.multids`, `.css`…) is pushed live over SSE, and the browser reloads after a restart.
 
 ## Updating hover-tilt
 
