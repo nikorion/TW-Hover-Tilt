@@ -73,8 +73,8 @@ Un `pnpm build` qui passe est un signal fort : ça prouve que chaque fichier `.t
 
 **Depuis la bibliothèque de plugins nikorion** (TiddlyWiki propose ensuite chaque nouvelle version en mise à jour) :
 
-1. Dans votre wiki, créer un tiddler tagué `$:/tags/PluginLibrary`, avec un champ `url` valant `https://nikorion.github.io/tw-dev/library/index.html` et une `caption` comme `nikorion`.
-2. Ouvrir *Panneau de configuration → Plugins → Obtenir d'autres plugins*, choisir la bibliothèque nikorion et installer **Hover Tilt**.
+1. Sur [nikorion.github.io/tw-plugins](https://nikorion.github.io/tw-plugins/), glisser le bouton **Bibliothèque de plugins nikorion** sur votre wiki (une fois par wiki).
+2. Ouvrir *Panneau de configuration → Plugins → Obtenir d'autres plugins → Ouvrir la bibliothèque de plugins*, choisir l'onglet nikorion et installer **Hover Tilt**.
 
 **À la main** : télécharger [`TW-Hover-Tilt-Plugin.json`](https://nikorion.github.io/TW-Hover-Tilt/TW-Hover-Tilt-Plugin.json) et le glisser-déposer sur votre wiki.
 

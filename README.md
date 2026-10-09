@@ -73,8 +73,8 @@ A green `pnpm build` is a strong signal: it proves every `.tid`/`.info` file par
 
 **From the nikorion plugin library** (TiddlyWiki then offers each new version as an update):
 
-1. In your wiki, create a tiddler tagged `$:/tags/PluginLibrary`, with a field `url` set to `https://nikorion.github.io/tw-dev/library/index.html` and a `caption` such as `nikorion`.
-2. Open *Control Panel → Plugins → Get more plugins*, choose the nikorion library and install **Hover Tilt**.
+1. On [nikorion.github.io/tw-plugins](https://nikorion.github.io/tw-plugins/), drag the **nikorion plugin library** button onto your wiki (once per wiki).
+2. Open *Control Panel → Plugins → Get more plugins → Open plugin library*, choose the nikorion tab and install **Hover Tilt**.
 
 **By hand**: download [`TW-Hover-Tilt-Plugin.json`](https://nikorion.github.io/TW-Hover-Tilt/TW-Hover-Tilt-Plugin.json) and drag it onto your wiki.
 
