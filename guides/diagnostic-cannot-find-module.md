@@ -11,7 +11,7 @@ Checklist, dans l'ordre, quand un module JS du plugin n'est pas trouvé par `req
    (Sans objet avec les outils Write/Edit de Claude, qui n'émettent pas de BOM.)
 3. **Erreur de syntaxe** — `node --check fichier.js` (erreurs syntaxiques seulement, pas runtime). Piège propre à un fichier vendoré depuis un build ESM : un `export { ... };` ou `import ... from ...` resté en place fait échouer le parsing dans la sandbox TW (`function(module, exports, require){...}` n'accepte pas la syntaxe de module ES) — c'est exactement ce que `vendor-hover-tilt.cjs` retire.
 4. **Erreur runtime** — le module existe et parse, mais crashe à l'exécution (`require()` échoue silencieusement côté TW).
-5. **Symlink manquant** — le titre du plugin doit être résolvable via `TIDDLYWIKI_PLUGIN_PATH` (`nikorion/hover-tilt` → `src/hover-tilt`). Sans ce symlink, `pluginPath: "../src"` dans `wiki/tiddlywiki.info` ne suffit pas — TW lève `Cannot find plugin 'nikorion/hover-tilt'` plutôt qu'une erreur de module, mais la cause racine est apparentée (résolution de titre).
+5. **Symlink manquant** — le titre du plugin doit être résolvable via `TIDDLYWIKI_PLUGIN_PATH` (`nikorion/hover-tilt` → `src/hover-tilt`). Sans ce symlink (créé seul par `pnpm dev`, manuel ailleurs), TW lève `Cannot find plugin 'nikorion/hover-tilt'` plutôt qu'une erreur de module, mais la cause racine est apparentée (résolution de titre).
 
 Vérification directe du contenu d'un tiddler dans le JSON buildé (tableau JSON dont l'élément 0 est le tiddler-plugin ; son `text` contient le paquet `{"tiddlers":{...}}`) :
 

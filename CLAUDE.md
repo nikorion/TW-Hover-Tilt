@@ -25,7 +25,7 @@
 | `src/hover-tilt/default-config.multids` | défauts opiniâtres LIVRÉS comme données (pas constantes JS) : `.../settings/<attr>` |
 | `wiki/tiddlers/Playground.tid` | réglage interactif (état `$:/state/.../playground/<attr>`), ouvert par défaut ; **pas livré** avec le plugin depuis 0.6.0 (dans la démo en ligne) ; chaînes : `wiki/tiddlers/language/<lang>/playground.multids` via `detect-language-lingo` |
 | `src/hover-tilt/readme,license,history.tid` | à la racine de `src/hover-tilt/` (comme TW-Math, pas de dossier `tiddlers/` séparé) ; exemples d'usage = section du readme |
-| `wiki/` | wiki TW de dev (`pluginPath: ../src`) ; `tiddlers/system/` : `$__config_SyncFilter.tid` + plugins de confort |
+| `wiki/` | wiki TW de dev ; `tiddlers/system/` : `$__config_SyncFilter.tid` + plugins de confort |
 | `dist/` | sortie du build `plugin-json` (artefact de release), gitignoré |
 | `docs/` | démo générée par `pnpm build` (target `demo`), gitignorée — publiée par la CI commune (`../guides/publication.md`) |
 | `scripts/vendor-hover-tilt.cjs` | régénère `hover-tilt.min.js` depuis `node_modules/hover-tilt` |
