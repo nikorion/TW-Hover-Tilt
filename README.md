@@ -21,16 +21,7 @@ Up to v0.1.0 this plugin compiled its own Svelte wrapper through Vite; since v0.
 ## Requirements
 
 - [Node.js](https://nodejs.org/) and [pnpm](https://pnpm.io/) (`pnpm@11.9.0` pinned in `package.json`)
-- A symlink resolving the plugin's two-segment name `nikorion/hover-tilt` to `src/hover-tilt`. `wiki/tiddlywiki.info` already sets `"pluginPath": "../src"`, but that alone is **not** enough: `pluginPath` only searches one level deep, so it can find a plugin folder named `hover-tilt`, never one matching the full `nikorion/hover-tilt` name. TiddlyWiki needs a directory tree that actually has that shape, found either via the `TIDDLYWIKI_PLUGIN_PATH` environment variable or a `plugins/nikorion/` folder next to the wiki. Set up one symlink:
-  ```
-  # PowerShell, needs an admin terminal or Windows Developer Mode enabled
-  New-Item -ItemType SymbolicLink -Path "$env:TIDDLYWIKI_PLUGIN_PATH\nikorion\hover-tilt" -Target "src\hover-tilt"
-  ```
-  ```
-  # Linux/macOS
-  ln -s "$(pwd)/src/hover-tilt" "$TIDDLYWIKI_PLUGIN_PATH/nikorion/hover-tilt"
-  ```
-  Without it, `tiddlywiki wiki --listen` / `--build` fails with `Cannot find plugin 'nikorion/hover-tilt'`.
+- Clone [tw-dev](https://github.com/nikorion/tw-dev) next to this repository: `pnpm dev` runs it, and it links by itself the nikorion plugins the dev wiki loads — from clones sitting next to this one (`../TW-Math`…), so your edits to them are live, otherwise from a read-only copy it fetches from GitHub. No symlink, no `TIDDLYWIKI_PLUGIN_PATH`, no admin rights. `pnpm build` alone still needs `TIDDLYWIKI_PLUGIN_PATH`: point it to `../tw-dev/.state/TW-Hover-Tilt/plugins`, created by `pnpm dev`.
 
 ## Developing
 
