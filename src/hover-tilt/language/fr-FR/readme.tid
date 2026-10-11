@@ -51,9 +51,9 @@ Chaque valeur est résolue en trois niveaux : l'attribut du widget, puis le tidd
 
 !!! Rayon des coins : une seule source de vérité
 
-Les couches reflet/ombre de hover-tilt vivent dans son //shadow DOM// et héritent leur `border-radius` de l'**hôte** (l'élément `<hover-tilt>`), pas de ton contenu. Arrondir seulement ta carte laisse donc reflet/ombre à coins carrés (ou au défaut `12px`).
+Les couches reflet/ombre de hover-tilt vivent dans son //shadow DOM// et héritent leur `border-radius` de l'**hôte** (l'élément `<hover-tilt>`), pas de votre contenu. Arrondir seulement votre carte laisse donc reflet/ombre à coins carrés (ou au défaut `12px`).
 
-Pour ne définir le rayon **qu'une fois**, mets la vraie valeur sur l'attribut `borderRadius` du widget et `border-radius: inherit` sur ton contenu : celui-ci récupère alors le rayon de l'hôte, et reflet + ombre + contenu restent toujours alignés. À l'inverse, coder le rayon en dur des deux côtés oblige à les garder synchronisés à la main.
+Pour ne définir le rayon **qu'une fois**, mettez la vraie valeur sur l'attribut `borderRadius` du widget et `border-radius: inherit` sur votre contenu : celui-ci récupère alors le rayon de l'hôte, et reflet + ombre + contenu restent toujours alignés. À l'inverse, coder le rayon en dur des deux côtés oblige à les garder synchronisés à la main.
 
 ---
 
