@@ -62,7 +62,7 @@
       "text/plain",
       "",
       "publishFilter",
-      "-[[$:/config/SyncFilter]] -[[$:/config/FileSystemPaths]] -[[$:/config/OriginalTiddlerPaths]] -[[$:/plugins/wikilabs/link-to-tabs]] -[[$:/plugins/kookma/commander]]",
+      "-[[$:/config/SyncFilter]] -[[$:/config/FileSystemPaths]] -[[$:/config/OriginalTiddlerPaths]] -[[$:/plugins/wikilabs/link-to-tabs]] -[[$:/plugins/kookma/commander]] -[[$:/plugins/oeyoews/tiddlywiki-codemirror-6]]",
       "--render",
       "$:/core/templates/tiddlywiki5.js",
       "[[tiddlywikicore-]addsuffix<version>addsuffix[.js]]",
