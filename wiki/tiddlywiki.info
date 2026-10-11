@@ -7,7 +7,7 @@
     "tiddlywiki/highlight",
     "tiddlywiki/katex",
     "nikorion/plugin-info-tree",
-    "nikorion/scroll-layout",
+    "nikorion/layout",
     "nikorion/math",
     "nikorion/font-manager",
     "nikorion/detect-language"
