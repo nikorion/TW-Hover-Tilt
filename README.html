@@ -9,6 +9,7 @@
 <meta name="description" content="A TiddlyWiki widget wrapping hover-tilt&#39;s Web Component for a 3D tilt/glare pointer effect on any content.">
 <meta name="generator" content="readme-html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23b8a4ff'/%3E%3Cstop offset='.55' stop-color='%236fd3f2'/%3E%3Cstop offset='1' stop-color='%23ff9fcf'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%2314151f'/%3E%3Cpath d='M9 8h9a5 5 0 0 1 0 10h-4l6 6' fill='none' stroke='url(%23g)' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M9 8v16' stroke='url(%23g)' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<noscript><style>.lang-page[hidden]{display:block}</style></noscript>
 <style>
 @layer reset, base, mise-en-page, composants, code, utilitaires;
 
@@ -149,19 +150,22 @@
   .badges img { block-size: 1.25rem; inline-size: auto; border-radius: 0.25rem; }
 
   .langues ul { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin-block-end: 1.6rem; }
-  .langues :is(a, span) {
+  .langues :is(a, span, button) {
     display: inline-block;
     padding: 0.2rem 0.8rem;
     border: 1px solid var(--bordure);
     border-radius: 999px;
+    font: inherit;
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 0.01em;
     text-decoration: none;
     color: var(--texte-attenue);
+    background: none;
   }
-  .langues a:hover { color: var(--texte-fort); border-color: var(--violet); }
-  .langues [aria-current] { color: var(--fond); background: var(--texte-fort); border-color: var(--texte-fort); }
+  .langues button { cursor: pointer; }
+  .langues :is(a, button):hover { color: var(--texte-fort); border-color: var(--violet); }
+  .langues [aria-current], .langues [aria-pressed="true"] { color: var(--fond); background: var(--texte-fort); border-color: var(--texte-fort); }
 
   .corps { padding-block-end: 4rem; }
   main:focus { outline: none; }
@@ -461,13 +465,12 @@
 </style>
 </head>
 <body>
-<a class="evitement" href="#contenu">Skip to content</a>
+<a class="evitement" href="#en-contenu">Skip to content</a>
 <div class="progression" aria-hidden="true"></div>
-<header class="entete">
+<nav class="langues" aria-label="Language"><ul><li><button type="button" data-lang="en" aria-pressed="true">English</button></li><li><button type="button" data-lang="fr" aria-pressed="false">Français</button></li></ul></nav><div class="lang-page" lang="en" data-lang="en" data-titre="TW-Hover-Tilt" data-description="A TiddlyWiki widget wrapping hover-tilt&#39;s Web Component for a 3D tilt/glare pointer effect on any content."><header class="entete">
 <div class="aurore" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="grille">
 <div class="entete-texte">
-<nav class="langues" aria-label="Language"><ul><li><span aria-current="page" lang="en">English</span></li><li><a href="README.fr.html" hreflang="fr" lang="fr">Français</a></li></ul></nav>
 <h1>TW-Hover-Tilt</h1>
 <div class="chapo">
 <p>A TiddlyWiki widget wrapping <a href="https://hover-tilt.simey.me" class="externe" rel="noopener">hover-tilt</a>&#39;s Web Component for a 3D tilt/glare pointer effect on any content.</p>
@@ -477,13 +480,13 @@
 </div>
 </header>
 <div class="grille corps">
-<nav class="sommaire" aria-labelledby="sommaire-titre">
-<h2 id="sommaire-titre">Contents</h2>
-<ol><li><a href="#what-this-is">What this is</a></li><li><a href="#requirements">Requirements</a></li><li><a href="#developing">Developing</a></li><li><a href="#updating-hover-tilt">Updating hover-tilt</a></li><li><a href="#testing">Testing</a></li><li><a href="#installation">Installation</a></li><li><a href="#license">License</a></li></ol>
+<nav class="sommaire" aria-labelledby="en-sommaire-titre">
+<h2 id="en-sommaire-titre">Contents</h2>
+<ol><li><a href="#en-what-this-is">What this is</a></li><li><a href="#en-requirements">Requirements</a></li><li><a href="#en-developing">Developing</a></li><li><a href="#en-updating-hover-tilt">Updating hover-tilt</a></li><li><a href="#en-testing">Testing</a></li><li><a href="#en-installation">Installation</a></li><li><a href="#en-license">License</a></li></ol>
 </nav>
-<main id="contenu" tabindex="-1">
+<main id="en-contenu" tabindex="-1">
 <article class="prose">
-<h2 id="what-this-is">What this is<a class="ancre" href="#what-this-is"><span class="visuellement-cache">Link to section « What this is »</span><span aria-hidden="true">#</span></a></h2>
+<h2 id="en-what-this-is">What this is<a class="ancre" href="#en-what-this-is"><span class="visuellement-cache">Link to section « What this is »</span><span aria-hidden="true">#</span></a></h2>
 <p>TiddlyWiki has no notion of npm or ES modules — it evaluates JS tiddlers inside a <code>function(module, exports, require)</code> sandbox, which chokes on <code>import</code>/<code>export</code>. hover-tilt (itself written in Svelte 5) ships its own prebuilt Web Component — a self-registering, dependency-free <code>&lt;hover-tilt&gt;</code> custom element. This plugin vendors that file as-is (<code>src/hover-tilt/modules/hover-tilt.min.js</code>: TW module header added, its one ESM <code>export</code> statement removed, minified with terser), and a plain TiddlyWiki widget loads it via <code>require()</code> like any other module, then drives the resulting <code>&lt;hover-tilt&gt;</code> element directly.</p>
 <p>It ships one widget:</p>
 <ul>
@@ -492,38 +495,38 @@
 <li>an interactive playground tuning every attribute at once, in the dev wiki (<code>wiki/tiddlers/Playground.tid</code>) and the <a href="https://nikorion.github.io/TW-Hover-Tilt/" class="externe" rel="noopener">online demo</a> — not shipped with the plugin</li>
 </ul>
 <p>Up to v0.1.0 this plugin compiled its own Svelte wrapper through Vite; since v0.2.0 it drives hover-tilt&#39;s prebuilt Web Component instead and compiles nothing itself (see the plugin&#39;s history tab for the changelog).</p>
-<h2 id="requirements">Requirements<a class="ancre" href="#requirements"><span class="visuellement-cache">Link to section « Requirements »</span><span aria-hidden="true">#</span></a></h2>
+<h2 id="en-requirements">Requirements<a class="ancre" href="#en-requirements"><span class="visuellement-cache">Link to section « Requirements »</span><span aria-hidden="true">#</span></a></h2>
 <ul>
 <li><a href="https://nodejs.org/" class="externe" rel="noopener">Node.js</a> and <a href="https://pnpm.io/" class="externe" rel="noopener">pnpm</a> (<code>pnpm@11.9.0</code> pinned in <code>package.json</code>)</li>
 <li>Clone <a href="https://github.com/nikorion/tw-dev" class="externe" rel="noopener">tw-dev</a> next to this repository: <code>pnpm dev</code> runs it, and it links by itself the nikorion plugins the dev wiki loads — from clones sitting next to this one (<code>../TW-Math</code>…), so your edits to them are live, otherwise from a read-only copy it fetches from GitHub. No symlink, no <code>TIDDLYWIKI_PLUGIN_PATH</code>, no admin rights. <code>pnpm build</code> alone still needs <code>TIDDLYWIKI_PLUGIN_PATH</code>: point it to <code>../tw-dev/.state/TW-Hover-Tilt/plugins</code>, created by <code>pnpm dev</code>.</li>
 </ul>
-<h2 id="developing">Developing<a class="ancre" href="#developing"><span class="visuellement-cache">Link to section « Developing »</span><span aria-hidden="true">#</span></a></h2>
-<div class="code" role="group" aria-labelledby="code-1-l">
-<div class="code-tete"><span class="code-langue" id="code-1-l">Shell</span><button type="button" class="copier" data-copier hidden aria-describedby="code-1-l">Copy</button></div>
+<h2 id="en-developing">Developing<a class="ancre" href="#en-developing"><span class="visuellement-cache">Link to section « Developing »</span><span aria-hidden="true">#</span></a></h2>
+<div class="code" role="group" aria-labelledby="en-code-1-l">
+<div class="code-tete"><span class="code-langue" id="en-code-1-l">Shell</span><button type="button" class="copier" data-copier hidden aria-describedby="en-code-1-l">Copy</button></div>
 <pre tabindex="0"><code class="hljs language-bash">pnpm install</code></pre>
 </div>
 <p>Test it inside TiddlyWiki, with automatic rebuild + browser reload on every change under <code>src/hover-tilt/</code>:</p>
-<div class="code" role="group" aria-labelledby="code-2-l">
-<div class="code-tete"><span class="code-langue" id="code-2-l">Shell</span><button type="button" class="copier" data-copier hidden aria-describedby="code-2-l">Copy</button></div>
+<div class="code" role="group" aria-labelledby="en-code-2-l">
+<div class="code-tete"><span class="code-langue" id="en-code-2-l">Shell</span><button type="button" class="copier" data-copier hidden aria-describedby="en-code-2-l">Copy</button></div>
 <pre tabindex="0"><code class="hljs language-bash">pnpm dev</code></pre>
 </div>
 <p><code>pnpm dev</code> prints the URL to open (random free port, remembered for the next run). It runs the shared dev server <code>../tw-dev</code> (cloned next to this repository): a change to a JS module or <code>plugin.info</code> restarts TiddlyWiki, any other file (<code>.tid</code>, <code>.multids</code>, <code>.css</code>…) is pushed live over SSE, and the browser reloads after a restart.</p>
-<h2 id="updating-hover-tilt">Updating hover-tilt<a class="ancre" href="#updating-hover-tilt"><span class="visuellement-cache">Link to section « Updating hover-tilt »</span><span aria-hidden="true">#</span></a></h2>
+<h2 id="en-updating-hover-tilt">Updating hover-tilt<a class="ancre" href="#en-updating-hover-tilt"><span class="visuellement-cache">Link to section « Updating hover-tilt »</span><span aria-hidden="true">#</span></a></h2>
 <p><code>src/hover-tilt/modules/hover-tilt.min.js</code> is a vendored, committed file — it is <strong>not</strong> rebuilt automatically by <code>pnpm dev</code> or <code>pnpm build</code>. To pick up a new hover-tilt release:</p>
-<div class="code" role="group" aria-labelledby="code-3-l">
-<div class="code-tete"><span class="code-langue" id="code-3-l">Shell</span><button type="button" class="copier" data-copier hidden aria-describedby="code-3-l">Copy</button></div>
+<div class="code" role="group" aria-labelledby="en-code-3-l">
+<div class="code-tete"><span class="code-langue" id="en-code-3-l">Shell</span><button type="button" class="copier" data-copier hidden aria-describedby="en-code-3-l">Copy</button></div>
 <pre tabindex="0"><code class="hljs language-bash">pnpm update:hover-tilt</code></pre>
 </div>
 <p>This chains three steps: <code>pnpm update hover-tilt</code> (bumps the npm dependency), <code>pnpm vendor:hover-tilt</code> (reads <code>node_modules/hover-tilt/dist/hover-tilt.js</code>, strips its one ESM <code>export</code> statement, minifies it with terser, and writes the result to <code>modules/hover-tilt.min.js</code> with a fresh TW/license header — <code>@date</code> there is the vendoring date, not a hover-tilt release date), then <code>pnpm build</code> to confirm the plugin still loads cleanly.</p>
-<h2 id="testing">Testing<a class="ancre" href="#testing"><span class="visuellement-cache">Link to section « Testing »</span><span aria-hidden="true">#</span></a></h2>
+<h2 id="en-testing">Testing<a class="ancre" href="#en-testing"><span class="visuellement-cache">Link to section « Testing »</span><span aria-hidden="true">#</span></a></h2>
 <p>There is no automated test suite. &quot;Testing&quot; here means:</p>
-<div class="code" role="group" aria-labelledby="code-4-l">
-<div class="code-tete"><span class="code-langue" id="code-4-l">Shell</span><button type="button" class="copier" data-copier hidden aria-describedby="code-4-l">Copy</button></div>
+<div class="code" role="group" aria-labelledby="en-code-4-l">
+<div class="code-tete"><span class="code-langue" id="en-code-4-l">Shell</span><button type="button" class="copier" data-copier hidden aria-describedby="en-code-4-l">Copy</button></div>
 <pre tabindex="0"><code class="hljs language-bash">pnpm lint         <span class="hljs-comment"># ESLint on the TiddlyWiki-side modules (hover-tilt.min.js excluded — it&#x27;s vendored)</span>
 pnpm build        <span class="hljs-comment"># dist/TW-Hover-Tilt-Plugin.json + docs/ (demo wiki, published by CI)</span></code></pre>
 </div>
 <p>A green <code>pnpm build</code> is a strong signal: it proves every <code>.tid</code>/<code>.info</code> file parses and every module&#39;s <code>require()</code> graph resolves. It does <strong>not</strong> prove the widget renders correctly in a browser — check that manually in a browser (URL printed by <code>pnpm dev</code>) after <code>pnpm dev</code>.</p>
-<h2 id="installation">Installation<a class="ancre" href="#installation"><span class="visuellement-cache">Link to section « Installation »</span><span aria-hidden="true">#</span></a></h2>
+<h2 id="en-installation">Installation<a class="ancre" href="#en-installation"><span class="visuellement-cache">Link to section « Installation »</span><span aria-hidden="true">#</span></a></h2>
 <p><strong>Live demo</strong>: <a href="https://nikorion.github.io/TW-Hover-Tilt/" class="externe" rel="noopener">https://nikorion.github.io/TW-Hover-Tilt/</a> — try the plugin before installing it.</p>
 <p><strong>From the nikorion plugin library</strong> (TiddlyWiki then offers each new version as an update):</p>
 <ol>
@@ -532,16 +535,94 @@ pnpm build        <span class="hljs-comment"># dist/TW-Hover-Tilt-Plugin.json + 
 </ol>
 <p><strong>By hand</strong>: download <a href="https://nikorion.github.io/TW-Hover-Tilt/TW-Hover-Tilt-Plugin.json" class="externe" rel="noopener"><code>TW-Hover-Tilt-Plugin.json</code></a> and drag it onto your wiki.</p>
 <p>Requires TiddlyWiki ≥ 5.3.8.</p>
-<h2 id="license">License<a class="ancre" href="#license"><span class="visuellement-cache">Link to section « License »</span><span aria-hidden="true">#</span></a></h2>
+<h2 id="en-license">License<a class="ancre" href="#en-license"><span class="visuellement-cache">Link to section « License »</span><span aria-hidden="true">#</span></a></h2>
 <p>MIT — see <code>src/hover-tilt/licence.tid</code>. Includes hover-tilt (MPL-2.0) and its bundled Svelte runtime (MIT).</p>
 </article>
 </main>
 </div>
 <footer class="pied">
 <div class="grille">
-<p>Page generated from <code>README.md</code> · <time datetime="2026-10-19">October 19, 2026</time> · <a href="#contenu">Back to top</a></p>
+<p>Page generated from <code>README.md</code> · <time datetime="2026-10-19">October 19, 2026</time> · <a href="#en-contenu">Back to top</a></p>
 </div>
-</footer>
+</footer></div>
+<div class="lang-page" lang="fr" data-lang="fr" data-titre="TW-Hover-Tilt" data-description="Un widget TiddlyWiki qui enveloppe le Web Component de hover-tilt pour appliquer un effet 3D d&#39;inclinaison/reflet au pointeur sur n&#39;importe quel contenu." hidden><header class="entete">
+<div class="aurore" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="grille">
+<div class="entete-texte">
+<h1>TW-Hover-Tilt</h1>
+<div class="chapo">
+<p>Un widget TiddlyWiki qui enveloppe le Web Component de <a href="https://hover-tilt.simey.me" class="externe" rel="noopener">hover-tilt</a> pour appliquer un effet 3D d&#39;inclinaison/reflet au pointeur sur n&#39;importe quel contenu.</p>
+</div>
+<p class="badges"><img src="https://img.shields.io/badge/status-experimental-orange" alt="Status" loading="lazy" decoding="async"></p>
+</div>
+</div>
+</header>
+<div class="grille corps">
+<nav class="sommaire" aria-labelledby="fr-sommaire-titre">
+<h2 id="fr-sommaire-titre">Sommaire</h2>
+<ol><li><a href="#fr-ce-que-cest">Ce que c&#39;est</a></li><li><a href="#fr-prérequis">Prérequis</a></li><li><a href="#fr-développer">Développer</a></li><li><a href="#fr-mettre-à-jour-hover-tilt">Mettre à jour hover-tilt</a></li><li><a href="#fr-tester">Tester</a></li><li><a href="#fr-installation">Installation</a></li><li><a href="#fr-licence">Licence</a></li></ol>
+</nav>
+<main id="fr-contenu" tabindex="-1">
+<article class="prose">
+<h2 id="fr-ce-que-cest">Ce que c&#39;est<a class="ancre" href="#fr-ce-que-cest"><span class="visuellement-cache">Lien vers la section « Ce que c&#39;est »</span><span aria-hidden="true">#</span></a></h2>
+<p>TiddlyWiki ne comprend ni npm ni les modules ES : il évalue les tiddlers JS dans une sandbox <code>function(module, exports, require)</code>, qui échoue sur <code>import</code>/<code>export</code>. hover-tilt (lui-même écrit en Svelte 5) fournit son propre Web Component prébuilt — un <code>&lt;hover-tilt&gt;</code> autonome, sans dépendance, qui s&#39;enregistre lui-même. Ce plugin vendore ce fichier tel quel (<code>src/hover-tilt/modules/hover-tilt.min.js</code> : en-tête TW ajouté, son unique instruction ESM <code>export</code> retirée, minifié avec terser), et un widget TiddlyWiki classique le charge via <code>require()</code> comme n&#39;importe quel autre module, puis pilote directement l&#39;élément <code>&lt;hover-tilt&gt;</code> obtenu.</p>
+<p>Il fournit un widget :</p>
+<ul>
+<li><code>&lt;$HoverTilt&gt;</code> — habille tout contenu écrit dans son propre corps avec l&#39;effet 3D d&#39;inclinaison/reflet de hover-tilt, en exposant (presque) toute la surface de props de hover-tilt comme attributs</li>
+<li>une internationalisation à la fois côté JS (<code>modules/lang.js</code>) et côté wikitext (<code>language/lingo.tid</code>), avec <code>en-GB</code> et <code>fr-FR</code> fournis</li>
+<li>un playground interactif pour régler tous les attributs à la fois, dans le wiki de dev (<code>wiki/tiddlers/Playground.tid</code>) et la <a href="https://nikorion.github.io/TW-Hover-Tilt/" class="externe" rel="noopener">démo en ligne</a> — non livré avec le plugin</li>
+</ul>
+<p>Jusqu&#39;à la v0.1.0 ce plugin compilait son propre wrapper Svelte via Vite ; depuis la v0.2.0 il pilote le Web Component prébuilt de hover-tilt et ne compile plus rien lui-même (voir l&#39;onglet history du plugin pour le journal des versions).</p>
+<h2 id="fr-prérequis">Prérequis<a class="ancre" href="#fr-prérequis"><span class="visuellement-cache">Lien vers la section « Prérequis »</span><span aria-hidden="true">#</span></a></h2>
+<ul>
+<li><a href="https://nodejs.org/" class="externe" rel="noopener">Node.js</a> et <a href="https://pnpm.io/" class="externe" rel="noopener">pnpm</a> (<code>pnpm@11.9.0</code> figé dans <code>package.json</code>)</li>
+<li>Cloner <a href="https://github.com/nikorion/tw-dev" class="externe" rel="noopener">tw-dev</a> à côté de ce dépôt : <code>pnpm dev</code> l&#39;exécute, et il relie lui-même les plugins nikorion que charge le wiki de dev — depuis les clones placés à côté de celui-ci (<code>../TW-Math</code>…), pour que vos modifications y soient prises en direct, sinon depuis une copie en lecture seule qu&#39;il récupère sur GitHub. Ni lien symbolique, ni <code>TIDDLYWIKI_PLUGIN_PATH</code>, ni droits administrateur. Seul <code>pnpm build</code> a encore besoin de <code>TIDDLYWIKI_PLUGIN_PATH</code> : le faire pointer sur <code>../tw-dev/.state/TW-Hover-Tilt/plugins</code>, créé par <code>pnpm dev</code>.</li>
+</ul>
+<h2 id="fr-développer">Développer<a class="ancre" href="#fr-développer"><span class="visuellement-cache">Lien vers la section « Développer »</span><span aria-hidden="true">#</span></a></h2>
+<div class="code" role="group" aria-labelledby="fr-code-1-l">
+<div class="code-tete"><span class="code-langue" id="fr-code-1-l">Shell</span><button type="button" class="copier" data-copier hidden aria-describedby="fr-code-1-l">Copier</button></div>
+<pre tabindex="0"><code class="hljs language-bash">pnpm install</code></pre>
+</div>
+<p>Tester dans TiddlyWiki, avec reconstruction automatique et rechargement du navigateur à chaque changement sous <code>src/hover-tilt/</code> :</p>
+<div class="code" role="group" aria-labelledby="fr-code-2-l">
+<div class="code-tete"><span class="code-langue" id="fr-code-2-l">Shell</span><button type="button" class="copier" data-copier hidden aria-describedby="fr-code-2-l">Copier</button></div>
+<pre tabindex="0"><code class="hljs language-bash">pnpm dev</code></pre>
+</div>
+<p><code>pnpm dev</code> affiche l&#39;URL à ouvrir (port libre aléatoire, réutilisé au lancement suivant). Il exécute le serveur de dev partagé <code>../tw-dev</code> (cloné à côté de ce dépôt) : un changement de module JS ou de <code>plugin.info</code> redémarre TiddlyWiki, tout autre fichier (<code>.tid</code>, <code>.multids</code>, <code>.css</code>…) est poussé à chaud via SSE, et le navigateur se recharge après un redémarrage.</p>
+<h2 id="fr-mettre-à-jour-hover-tilt">Mettre à jour hover-tilt<a class="ancre" href="#fr-mettre-à-jour-hover-tilt"><span class="visuellement-cache">Lien vers la section « Mettre à jour hover-tilt »</span><span aria-hidden="true">#</span></a></h2>
+<p><code>src/hover-tilt/modules/hover-tilt.min.js</code> est un fichier vendoré, committé — il n&#39;est <strong>pas</strong> régénéré automatiquement par <code>pnpm dev</code> ni <code>pnpm build</code>. Pour récupérer une nouvelle version de hover-tilt :</p>
+<div class="code" role="group" aria-labelledby="fr-code-3-l">
+<div class="code-tete"><span class="code-langue" id="fr-code-3-l">Shell</span><button type="button" class="copier" data-copier hidden aria-describedby="fr-code-3-l">Copier</button></div>
+<pre tabindex="0"><code class="hljs language-bash">pnpm update:hover-tilt</code></pre>
+</div>
+<p>Cette commande enchaîne trois étapes : <code>pnpm update hover-tilt</code> (met à jour la dépendance npm), <code>pnpm vendor:hover-tilt</code> (lit <code>node_modules/hover-tilt/dist/hover-tilt.js</code>, retire son unique instruction ESM <code>export</code>, le minifie avec terser, et écrit le résultat dans <code>modules/hover-tilt.min.js</code> avec un en-tête TW/licence tout neuf — <code>@date</code> y désigne la date de vendoring, pas une date de release hover-tilt), puis <code>pnpm build</code> pour confirmer que le plugin se charge toujours correctement.</p>
+<h2 id="fr-tester">Tester<a class="ancre" href="#fr-tester"><span class="visuellement-cache">Lien vers la section « Tester »</span><span aria-hidden="true">#</span></a></h2>
+<p>Il n&#39;y a pas de suite de tests automatisés. « Tester » signifie ici :</p>
+<div class="code" role="group" aria-labelledby="fr-code-4-l">
+<div class="code-tete"><span class="code-langue" id="fr-code-4-l">Shell</span><button type="button" class="copier" data-copier hidden aria-describedby="fr-code-4-l">Copier</button></div>
+<pre tabindex="0"><code class="hljs language-bash">pnpm lint         <span class="hljs-comment"># ESLint sur les modules côté TiddlyWiki (hover-tilt.min.js exclu, car vendoré)</span>
+pnpm build        <span class="hljs-comment"># dist/TW-Hover-Tilt-Plugin.json + docs/ (wiki de démo, publié par la CI)</span></code></pre>
+</div>
+<p>Un <code>pnpm build</code> qui passe est un signal fort : ça prouve que chaque fichier <code>.tid</code>/<code>.info</code> se parse et que le graphe de <code>require()</code> de chaque module se résout. Ça ne prouve <strong>pas</strong> que le widget s&#39;affiche correctement dans un navigateur — à vérifier manuellement dans un navigateur (URL affichée par <code>pnpm dev</code>) après <code>pnpm dev</code>.</p>
+<h2 id="fr-installation">Installation<a class="ancre" href="#fr-installation"><span class="visuellement-cache">Lien vers la section « Installation »</span><span aria-hidden="true">#</span></a></h2>
+<p><strong>Démo en ligne</strong> : <a href="https://nikorion.github.io/TW-Hover-Tilt/" class="externe" rel="noopener">https://nikorion.github.io/TW-Hover-Tilt/</a> — pour essayer le plugin avant de l&#39;installer.</p>
+<p><strong>Depuis la bibliothèque de plugins nikorion</strong> (TiddlyWiki propose ensuite chaque nouvelle version en mise à jour) :</p>
+<ol>
+<li>Sur <a href="https://nikorion.github.io/TW-Plugin-Library/" class="externe" rel="noopener">nikorion.github.io/TW-Plugin-Library</a>, glisser le bouton <strong>Bibliothèque de plugins nikorion</strong> sur votre wiki (une fois par wiki).</li>
+<li>Ouvrir <em>Panneau de configuration → Plugins → Obtenir d&#39;autres plugins → Ouvrir la bibliothèque de plugins</em>, choisir l&#39;onglet nikorion et installer <strong>Hover Tilt</strong>.</li>
+</ol>
+<p><strong>À la main</strong> : télécharger <a href="https://nikorion.github.io/TW-Hover-Tilt/TW-Hover-Tilt-Plugin.json" class="externe" rel="noopener"><code>TW-Hover-Tilt-Plugin.json</code></a> et le glisser-déposer sur votre wiki.</p>
+<p>Nécessite TiddlyWiki ≥ 5.3.8.</p>
+<h2 id="fr-licence">Licence<a class="ancre" href="#fr-licence"><span class="visuellement-cache">Lien vers la section « Licence »</span><span aria-hidden="true">#</span></a></h2>
+<p>MIT — voir <code>src/hover-tilt/licence.tid</code>. Inclut hover-tilt (MPL-2.0) et le runtime Svelte qu&#39;il embarque (MIT).</p>
+</article>
+</main>
+</div>
+<footer class="pied">
+<div class="grille">
+<p>Page générée depuis <code>README.fr.md</code> · <time datetime="2026-10-19">19 octobre 2026</time> · <a href="#fr-contenu">Haut de page</a></p>
+</div>
+</footer></div>
 <p class="visuellement-cache" role="status" id="annonce"></p>
 <script type="module" data-copie-ok="Code copied to clipboard" data-copie-echec="Copy failed: the code is selected, press Ctrl+C">
 // Amélioration progressive : la page reste complète sans JavaScript.
@@ -593,6 +674,34 @@ if (liens.size && 'IntersectionObserver' in window) {
   }, { rootMargin: '0px 0px -65% 0px' });
   titres.forEach((h) => observateur.observe(h));
 }
-</script>
+
+
+// Bascule de langue (pages fusionnées dans un seul fichier) : repli complet sans JS via le
+// <style> posé dans <noscript> (voir <head>), qui neutralise les [hidden] des .lang-page.
+{
+  const nav = document.querySelector('.langues');
+  const boutons = nav ? [...nav.querySelectorAll('button[data-lang]')] : [];
+  const blocs = [...document.querySelectorAll('.lang-page')];
+  if (boutons.length && blocs.length) {
+    const basculer = (langue, { annoncer = true } = {}) => {
+      const bouton = boutons.find((b) => b.dataset.lang === langue);
+      const bloc = blocs.find((b) => b.dataset.lang === langue);
+      if (!bouton || !bloc) return;
+      for (const b of blocs) b.hidden = b !== bloc;
+      for (const b of boutons) b.setAttribute('aria-pressed', String(b === bouton));
+      document.documentElement.lang = langue;
+      document.title = bloc.dataset.titre;
+      document.querySelector('meta[name="description"]')?.setAttribute('content', bloc.dataset.description || '');
+      document.querySelector('.evitement')?.setAttribute('href', '#' + langue + '-contenu');
+      if (annoncer) dire(bouton.textContent);
+    };
+    for (const bouton of boutons) bouton.addEventListener('click', () => basculer(bouton.dataset.lang));
+    const disponibles = blocs.map((b) => b.dataset.lang);
+    const preferee = (navigator.languages ?? [navigator.language])
+      .map((l) => l.slice(0, 2).toLowerCase())
+      .find((l) => disponibles.includes(l));
+    if (preferee) basculer(preferee, { annoncer: false });
+  }
+}</script>
 </body>
 </html>
